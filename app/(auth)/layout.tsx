@@ -1,14 +1,14 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
-import '@/styles/globals.css';
 import { AuthProvider } from '@/providers';
+import '@/styles/globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Posts | Share your thoughts easy!',
-  description: 'The most popular social network app',
+  title: 'Posts | Sign in',
+  description: 'Sign in to your account or create one',
 };
 
 export default function RootLayout({
@@ -18,7 +18,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body
+        className={`${inter.className} min-h-screen flex justify-center items-center`}
+      >
         <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
