@@ -1,3 +1,4 @@
+import { dark } from '@clerk/themes';
 import { ClerkLoaded, ClerkLoading, ClerkProvider } from '@clerk/nextjs';
 
 export default function AuthProvider({
@@ -8,9 +9,10 @@ export default function AuthProvider({
   return (
     <ClerkProvider
       appearance={{
+        baseTheme: dark,
         layout: {
           socialButtonsPlacement: 'bottom',
-          logoImageUrl: '/logo-light.png',
+          logoImageUrl: '/logo-outlined.png',
         },
       }}
     >

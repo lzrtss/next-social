@@ -1,9 +1,9 @@
-import { UserButton } from '@clerk/nextjs';
+import { Container } from '@/components';
 
 export default function Home() {
   return (
-    <div>
-      <UserButton afterSignOutUrl="/" />
-    </div>
+    // <Container>
+      <h1 className="text-4xl">Home</h1>
+    // </Container>
   );
 }
