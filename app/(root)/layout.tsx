@@ -6,9 +6,10 @@ import {
   Container,
   Footer,
   Header,
-  LeftSidebar,
+  MainNavbar,
   RightSidebar,
 } from '@/components';
+import { sidebarLinks } from '@/constants';
 import '@/styles/globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -28,13 +29,13 @@ export default function RootLayout({
       <body className={inter.className}>
         <AuthProvider>
           <Header />
-          <Container className="min-h-screen flex justify-between pt-28 pb-10 max-md:pb-32">
-            <LeftSidebar />
-            <main className="flex flex-1 w-full max-w-4xl bg-neutral-800">
+          <div className="max-w-7xl mx-auto flex justify-between">
+            <MainNavbar links={sidebarLinks} />
+            <div className="min-h-screen w-full flex-1 bg-neutral-800">
               {children}
-            </main>
+            </div>
             <RightSidebar />
-          </Container>
+          </div>
           <Footer />
         </AuthProvider>
       </body>
