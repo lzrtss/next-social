@@ -12,7 +12,7 @@ export default function AuthProvider({
         baseTheme: dark,
         layout: {
           socialButtonsPlacement: 'bottom',
-          logoImageUrl: '/logo-outlined.png',
+          logoImageUrl: '/logo-light.svg',
         },
       }}
     >

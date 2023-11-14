@@ -7,7 +7,7 @@ import {
   Footer,
   Header,
   MainNavbar,
-  RightSidebar,
+  CommunitiesNavbar,
 } from '@/components';
 import { sidebarLinks } from '@/constants';
 import '@/styles/globals.css';
@@ -34,7 +34,7 @@ export default function RootLayout({
             <div className="min-h-screen w-full flex-1 bg-neutral-800">
               {children}
             </div>
-            <RightSidebar />
+            <CommunitiesNavbar />
           </div>
           <Footer />
         </AuthProvider>

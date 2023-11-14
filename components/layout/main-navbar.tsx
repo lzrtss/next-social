@@ -15,7 +15,7 @@ interface MainNavbarProps {
 
 export default function MainNavbar({ links }: MainNavbarProps) {
   return (
-    <aside className="fixed bottom-0 w-full z-10 custom-scrollbar bg-neutral-800 border-t border-t-neutral-700 md:sticky md:left-0 md:top-0 md:min-h-screen md:w-fit md:flex-col md:overflow-auto md:border-r md:border-r-neutral-700">
+    <aside className="fixed bottom-0 w-full z-10 custom-scrollbar bg-neutral-800 border-t border-t-neutral-700 md:sticky md:left-0 md:top-0 md:min-h-screen md:w-fit md:flex-col md:overflow-auto md:border-t-0 md:border-r md:border-r-neutral-700">
       <Container>
         <nav>
           <ul className="w-full flex flex-1 flex-row justify-between md:justify-start md:gap-4 md:flex-col">
