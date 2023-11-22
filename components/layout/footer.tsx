@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { Container } from '@/components';
+import { Container } from '@/components/server';
 
 export default function Footer() {
   return (

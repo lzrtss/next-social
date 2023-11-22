@@ -1,7 +1,13 @@
 import Link from 'next/link';
-import { OrganizationSwitcher, SignedIn } from '@clerk/nextjs';
+import {
+  OrganizationSwitcher,
+  SignInButton,
+  SignedIn,
+  SignedOut,
+} from '@clerk/nextjs';
 
-import { Container, Logo, SignOutBtn } from '@/components';
+import { Container, Logo } from '@/components/server';
+import { SignOutBtn } from '@/components/client';
 
 export default function Header() {
   return (
@@ -24,6 +30,10 @@ export default function Header() {
             <SignedIn>
               <SignOutBtn />
             </SignedIn>
+
+            <SignedOut>
+              <SignInButton />
+            </SignedOut>
           </div>
         </nav>
       </Container>

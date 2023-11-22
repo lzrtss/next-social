@@ -1,1 +1,1 @@
-export { sidebarLinks } from './sidebar-links';
+export { mainNavbarLinks } from './main-navbar-links';

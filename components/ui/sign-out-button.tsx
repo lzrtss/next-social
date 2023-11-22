@@ -9,7 +9,7 @@ interface SignOutBtnProps extends React.ComponentProps<typeof SignOutButton> {
   width?: number;
 }
 
-export default function SignOutBtn({
+export function SignOutBtn({
   height = 24,
   width = 24,
   ...props

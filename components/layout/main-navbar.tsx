@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import { SignedIn } from '@clerk/nextjs';
 
-import { Container, NavLink, SignOutBtn } from '@/components';
+import { Container } from '@/components/server';
+import { SignOutBtn, NavLink } from '@/components/client';
 
 interface MenuItem {
   imgURL: string;

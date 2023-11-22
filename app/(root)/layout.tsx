@@ -1,15 +1,14 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
-import { AuthProvider } from '@/providers';
 import {
-  Container,
+  CommunitiesNavbar,
   Footer,
   Header,
   MainNavbar,
-  CommunitiesNavbar,
-} from '@/components';
-import { sidebarLinks } from '@/constants';
+} from '@/components/server';
+import { AuthProvider } from '@/providers';
+import { mainNavbarLinks } from '@/constants';
 import '@/styles/globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -30,7 +29,7 @@ export default function RootLayout({
         <AuthProvider>
           <Header />
           <div className="max-w-7xl mx-auto flex justify-between">
-            <MainNavbar links={sidebarLinks} />
+            <MainNavbar links={mainNavbarLinks} />
             <div className="min-h-screen w-full flex-1 bg-neutral-800">
               {children}
             </div>

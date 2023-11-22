@@ -1,4 +1,4 @@
-export const sidebarLinks = [
+export const mainNavbarLinks = [
   {
     imgURL: '/assets/home.svg',
     route: '/',
