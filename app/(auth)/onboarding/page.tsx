@@ -27,7 +27,7 @@ export default async function Onboarding() {
         </p>
 
         <section className="p-8 bg-neutral-700 rounded-lg">
-          <UserProfile user={userData} btnLabel="Continue" />
+          <UserProfile user={userData} btnLabel="Save" />
         </section>
       </Container>
     </main>

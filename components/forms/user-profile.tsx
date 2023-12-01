@@ -1,6 +1,7 @@
 'use client';
 
 import { ChangeEvent, useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -16,10 +17,11 @@ import {
   FormLabel,
   Textarea,
 } from '@/components/client';
-import { userSchema } from '@/lib/schemas';
+import { userValidation } from '@/lib/form-validation';
 import { isBase64Image } from '@/lib/utils';
 import { useUploadThing } from '@/lib/uploadthing';
 import { IUser } from '@/types/user.interface';
+import { updateUser } from '@/actions';
 
 interface UserProfileProps {
   user: IUser;
@@ -29,9 +31,11 @@ interface UserProfileProps {
 export default function UserProfile({ user, btnLabel }: UserProfileProps) {
   const [files, setFiles] = useState<File[]>([]);
   const { startUpload } = useUploadThing('media');
+  const router = useRouter();
+  const pathname = usePathname();
 
   const form = useForm({
-    resolver: zodResolver(userSchema),
+    resolver: zodResolver(userValidation),
     defaultValues: {
       image: user?.image || '',
       name: user?.name || '',
@@ -67,7 +71,7 @@ export default function UserProfile({ user, btnLabel }: UserProfileProps) {
     }
   };
 
-  const onSubmit = async (values: z.infer<typeof userSchema>) => {
+  const onSubmit = async (values: z.infer<typeof userValidation>) => {
     const blob = values.image;
 
     const hasImageChanged = isBase64Image(blob);
@@ -80,8 +84,20 @@ export default function UserProfile({ user, btnLabel }: UserProfileProps) {
       }
     }
 
-    console.log(values);
-    // TODO: Update user profile
+    await updateUser({
+      id: user.id,
+      username: values.username.toLowerCase(),
+      name: values.name,
+      image: values.image,
+      bio: values.bio,
+      path: pathname,
+    });
+
+    if (pathname === '/profile/edit') {
+      router.back();
+    } else {
+      router.push('/');
+    }
   };
 
   return (

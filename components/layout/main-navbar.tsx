@@ -24,7 +24,7 @@ export default function MainNavbar({ links }: MainNavbarProps) {
               <li key={link.label}>
                 <NavLink
                   href={link.route}
-                  className="p-4 flex justify-start gap-2 rounded-lg"
+                  className="p-4 flex justify-start gap-2 rounded-md"
                 >
                   <Image
                     src={link.imgURL}
