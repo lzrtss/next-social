@@ -15,6 +15,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
   Textarea,
 } from '@/components/client';
 import { userValidation } from '@/lib/form-validation';
@@ -23,12 +24,17 @@ import { useUploadThing } from '@/lib/uploadthing';
 import { IUser } from '@/types/user.interface';
 import { updateUser } from '@/actions';
 
-interface UserProfileProps {
+interface UserProfileFormProps {
   user: IUser;
   btnLabel: string;
+  className?: string;
 }
 
-export default function UserProfile({ user, btnLabel }: UserProfileProps) {
+export default function UserProfileForm({
+  user,
+  btnLabel,
+  className,
+}: UserProfileFormProps) {
   const [files, setFiles] = useState<File[]>([]);
   const { startUpload } = useUploadThing('media');
   const router = useRouter();
@@ -104,7 +110,7 @@ export default function UserProfile({ user, btnLabel }: UserProfileProps) {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col justify-start gap-8"
+        className={`flex flex-col justify-start gap-8 ${className}`}
       >
         <FormField
           control={form.control}
@@ -136,10 +142,11 @@ export default function UserProfile({ user, btnLabel }: UserProfileProps) {
                   type="file"
                   accept="image/*"
                   placeholder="Upload your photo"
-                  className="cursor-pointer border-none bg-transparent outline-none file:text-sky-500"
+                  className="cursor-pointer border-none bg-transparent outline-none file:text-amber-600"
                   onChange={(e) => handleImageUpload(e, field.onChange)}
                 />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -159,6 +166,7 @@ export default function UserProfile({ user, btnLabel }: UserProfileProps) {
                   {...field}
                 />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -178,6 +186,7 @@ export default function UserProfile({ user, btnLabel }: UserProfileProps) {
                   {...field}
                 />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -196,11 +205,15 @@ export default function UserProfile({ user, btnLabel }: UserProfileProps) {
                   {...field}
                 />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
 
-        <Button type="submit" className="bg-sky-500 hover:bg-sky-600">
+        <Button
+          type="submit"
+          className="bg-amber-600 hover:bg-amber-500 hover:text-neutral-800"
+        >
           {btnLabel}
         </Button>
       </form>

@@ -14,7 +14,7 @@ import '@/styles/globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Thoughts | Share your thoughts easy!',
+  title: 'Posts | Share your Posts easy!',
   description: 'The most popular social network app',
 };
 

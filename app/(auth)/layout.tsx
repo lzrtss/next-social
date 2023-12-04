@@ -7,7 +7,7 @@ import '@/styles/globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Thoughts | Sign in',
+  title: 'Posts | Sign in',
   description: 'Sign in to your account or create one',
 };
 

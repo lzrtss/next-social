@@ -17,4 +17,5 @@ export { SignOutBtn } from './ui/sign-out-button';
 export { Textarea } from './ui/textarea';
 
 export { default as NavLink } from './ui/nav-link';
-export { default as UserProfile } from './forms/user-profile';
+export { default as CreatePostForm } from './forms/create-post-form';
+export { default as UserProfileForm } from './forms/user-profile-form';

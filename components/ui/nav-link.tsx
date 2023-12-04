@@ -17,13 +17,14 @@ export default function NavLink({
 }: NavLinkProps) {
   const pathname = usePathname();
 
-  const isActive = pathname.includes(href) || pathname === href;
+  const isActive =
+    (pathname.includes(href) && href.length > 1) || pathname === href;
 
   return (
     <Link
       href={href}
       {...props}
-      className={`${isActive ? 'bg-sky-500' : ''} ${className}`}
+      className={`${isActive ? 'bg-amber-600' : ''} ${className}`}
     >
       {children}
     </Link>
