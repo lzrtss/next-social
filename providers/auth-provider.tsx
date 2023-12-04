@@ -14,6 +14,12 @@ export default function AuthProvider({
           socialButtonsPlacement: 'bottom',
           logoImageUrl: '/logo-light.svg',
         },
+        variables: {
+          colorPrimary: '#f8a055',
+          colorTextSecondary: '#ccc',
+          colorBackground: '#333',
+          colorInputBackground: '#444',
+        },
       }}
     >
       <ClerkLoading>

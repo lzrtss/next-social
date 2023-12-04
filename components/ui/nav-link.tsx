@@ -24,7 +24,7 @@ export default function NavLink({
     <Link
       href={href}
       {...props}
-      className={`${isActive ? 'bg-amber-600' : ''} ${className}`}
+      className={`${isActive ? 'bg-orange-400' : ''} ${className}`}
     >
       {children}
     </Link>

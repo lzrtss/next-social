@@ -117,7 +117,7 @@ export default function UserProfileForm({
           name="image"
           render={({ field }) => (
             <FormItem className="flex items-center gap-2">
-              <FormLabel className="flex h-24 w-24 items-center justify-center rounded-full bg-neutral-800">
+              <FormLabel className="flex h-24 w-24 items-center justify-center rounded-full bg-neutral-700">
                 {field.value ? (
                   <Image
                     src={field.value}
@@ -137,12 +137,12 @@ export default function UserProfileForm({
                   />
                 )}
               </FormLabel>
-              <FormControl className="flex-1 font-medium text-neutral-100">
+              <FormControl className="flex-1 font-medium text-neutral-50">
                 <Input
                   type="file"
                   accept="image/*"
                   placeholder="Upload your photo"
-                  className="cursor-pointer border-none bg-transparent outline-none file:text-amber-600"
+                  className="cursor-pointer border-none bg-transparent outline-none file:text-orange-400"
                   onChange={(e) => handleImageUpload(e, field.onChange)}
                 />
               </FormControl>
@@ -156,13 +156,13 @@ export default function UserProfileForm({
           name="name"
           render={({ field }) => (
             <FormItem className="w-full flex flex-col gap-2">
-              <FormLabel className="font-medium text-neutral-100">
+              <FormLabel className="font-medium text-neutral-50">
                 Name
               </FormLabel>
               <FormControl>
                 <Input
                   type="text"
-                  className="px-4 py-2 border-none bg-neutral-800 text-neutral-50 focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0"
+                  className="px-4 py-2 border-none bg-neutral-700 text-neutral-50 focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0"
                   {...field}
                 />
               </FormControl>
@@ -176,13 +176,13 @@ export default function UserProfileForm({
           name="username"
           render={({ field }) => (
             <FormItem className="w-full flex flex-col gap-2">
-              <FormLabel className="font-medium text-neutral-100">
+              <FormLabel className="font-medium text-neutral-50">
                 Username
               </FormLabel>
               <FormControl>
                 <Input
                   type="text"
-                  className="px-4 py-2 border-none bg-neutral-800 text-neutral-50 focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0"
+                  className="px-4 py-2 border-none bg-neutral-700 text-neutral-50 focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0"
                   {...field}
                 />
               </FormControl>
@@ -195,13 +195,11 @@ export default function UserProfileForm({
           name="bio"
           render={({ field }) => (
             <FormItem className="w-full flex flex-col gap-2">
-              <FormLabel className="font-medium text-neutral-100">
-                Bio
-              </FormLabel>
+              <FormLabel className="font-medium text-neutral-50">Bio</FormLabel>
               <FormControl>
                 <Textarea
                   rows={10}
-                  className="px-4 py-2 border-none bg-neutral-800 text-neutral-50 focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0"
+                  className="px-4 py-2 border-none bg-neutral-700 text-neutral-50 focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0"
                   {...field}
                 />
               </FormControl>
@@ -210,10 +208,7 @@ export default function UserProfileForm({
           )}
         />
 
-        <Button
-          type="submit"
-          className="bg-amber-600 hover:bg-amber-500 hover:text-neutral-800"
-        >
+        <Button type="submit" variant="secondary">
           {btnLabel}
         </Button>
       </form>

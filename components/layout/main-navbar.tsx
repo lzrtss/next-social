@@ -23,7 +23,7 @@ export default function MainNavbar({ links }: MainNavbarProps) {
             <li key={link.label}>
               <NavLink
                 href={link.route}
-                className="px-8 py-4 flex justify-start gap-2"
+                className="px-6 py-4 flex justify-start gap-3"
               >
                 <Image
                   src={link.imgURL}

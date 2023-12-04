@@ -23,10 +23,10 @@ export default async function Onboarding() {
         <h1 className="mt-2 mb-8 text-4xl">Onboarding</h1>
         <p className="mb-8">
           Fill out your profile to continue using{' '}
-          <span className="font-medium text-amber-600">Posts</span>
+          <span className="font-medium">Posts</span>
         </p>
 
-        <section className="p-8 bg-neutral-700 rounded-lg">
+        <section className="p-8 bg-neutral-800 rounded-md border border-neutral-700">
           <UserProfileForm user={userData} btnLabel="Save" />
         </section>
       </Container>

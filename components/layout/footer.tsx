@@ -10,7 +10,7 @@ export default function Footer() {
           Copyright &copy; {new Date().getFullYear()}{' '}
           <Link
             href="/"
-            className="hover:text-amber-600 hover:underline underline-offset-2"
+            className="hover:text-orange-400 underline underline-offset-2"
           >
             Posts
           </Link>

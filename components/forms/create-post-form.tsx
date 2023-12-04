@@ -72,10 +72,7 @@ export default function CreatePostForm({
           )}
         />
 
-        <Button
-          type="submit"
-          className="bg-amber-600 hover:bg-amber-500 hover:text-neutral-800"
-        >
+        <Button type="submit" variant="secondary" className="rounded-sm">
           {btnLabel}
         </Button>
       </form>
