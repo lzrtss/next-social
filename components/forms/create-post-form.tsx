@@ -65,7 +65,11 @@ export default function CreatePostForm({
                 Post
               </FormLabel>
               <FormControl className="border bg-neutral-700 border-neutral-800 text-neutral-50 focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0">
-                <Textarea rows={15} {...field} />
+                <Textarea
+                  placeholder="Type your post here"
+                  rows={15}
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>

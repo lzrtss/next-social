@@ -35,3 +35,37 @@ export const createPost = async ({
     throw new Error(`Failed to create post: ${error.message}`);
   }
 };
+
+export const fetchPosts = async (pageNumber = 1, postsPerPage = 20) => {
+  try {
+    connectToDb();
+
+    const skipAmount = (pageNumber - 1) * postsPerPage;
+
+    const postsQuery = Post.find({ parentId: { $in: [null, undefined] } })
+      .sort({ createdAt: 'desc' })
+      .skip(skipAmount)
+      .limit(postsPerPage)
+      .populate({ path: 'author', model: User })
+      .populate({
+        path: 'children',
+        populate: {
+          path: 'author',
+          model: User,
+          select: '_id name parentId, image',
+        },
+      });
+
+    const totalPostsNumber = await Post.countDocuments({
+      parentId: { $in: [null, undefined] },
+    });
+
+    const posts = await postsQuery.exec();
+
+    const isNext = totalPostsNumber > skipAmount + posts.length;
+
+    return { posts, isNext };
+  } catch (error: any) {
+    throw new Error(`Failed to fetch posts: ${error.message}`);
+  }
+};
