@@ -1,36 +1,20 @@
 import Image from 'next/image';
 import Link from 'next/link';
+
 import SocialActions from './social-actions';
 import CommentsPreview from './comments-preview';
-
-interface IAuthor {
-  id: string;
-  image: string;
-  name: string;
-}
-
-interface IComment {
-  author: {
-    image: string;
-  };
-}
-
-interface ICommunity {
-  id: string;
-  image: string;
-  name: string;
-}
+import { IAuthor, ICommunity, IPost } from '@/types/post.interface';
 
 interface PostCardProps {
   id: string;
   author: IAuthor;
   currentUserId: string | undefined;
-  comments: IComment[];
   community: ICommunity | null;
+  comments: IPost[];
   content: string;
   createdAt: string;
-  isComment?: boolean;
   parentId: string | null;
+  isComment?: boolean;
 }
 
 export default function PostCard({
@@ -45,7 +29,11 @@ export default function PostCard({
   isComment,
 }: PostCardProps) {
   return (
-    <article className="w-full p-6 flex flex-col rounded-xl bg-neutral-700">
+    <article
+      className={`w-full flex flex-col rounded-xl ${
+        isComment ? 'px-0 sm:px-6' : 'p-6 bg-neutral-700'
+      }`}
+    >
       <div className="flex justify-between items-start">
         <div className="w-full flex flex-row flex-1 gap-3">
           <div className="flex flex-col items-center">
@@ -53,6 +41,7 @@ export default function PostCard({
               <Image
                 src={author.image}
                 fill
+                sizes="48px"
                 alt="Profile image"
                 className="cursor-pointer rounded-full"
               />

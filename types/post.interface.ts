@@ -1,5 +1,23 @@
+export interface IAuthor {
+  id: string;
+  image: string;
+  name: string;
+}
+
+export interface ICommunity {
+  id: string;
+  image: string;
+  name: string;
+}
+
 export interface IPost {
-  author: string;
+  _id: string;
+  author: IAuthor;
+  currentUserId: string | undefined;
+  community: ICommunity | null;
+  children: IPost[];
   text: string;
-  communityId: string | null;
+  createdAt: string;
+  parentId: string | null;
+  isComment?: boolean;
 }

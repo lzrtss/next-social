@@ -5,7 +5,7 @@ import { fetchPosts } from '@/actions';
 
 export default async function Home() {
   const user = await currentUser();
-  const result = await fetchPosts(1, 30);
+  const { posts, isNext } = await fetchPosts(1, 30);
 
   return (
     <main className="h-full bg-neutral-800">
@@ -13,11 +13,11 @@ export default async function Home() {
         <h1 className="mt-2 mb-8 text-4xl">Home</h1>
 
         <section className="flex flex-col gap-10">
-          {result.posts.length === 0 ? (
+          {posts.length === 0 ? (
             <p className="text-center text-neutral-50">No posts to show...</p>
           ) : (
             <>
-              {result.posts.map((post) => (
+              {posts.map((post) => (
                 <PostCard
                   key={post._id}
                   id={post._id}

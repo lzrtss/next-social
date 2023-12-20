@@ -1,3 +1,5 @@
+'use client';
+
 import { usePathname, useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -15,7 +17,6 @@ import {
 } from '@/components/client';
 import { postValidation } from '@/lib/form-validation';
 import { createPost } from '@/actions';
-// import { createPost } from '@/actions';
 
 interface CreatePostFormProps {
   userId: string;
@@ -76,7 +77,7 @@ export default function CreatePostForm({
           )}
         />
 
-        <Button type="submit" variant="secondary" className="rounded-sm">
+        <Button type="submit" variant="secondary" className="rounded-lg">
           {btnLabel}
         </Button>
       </form>
