@@ -23,7 +23,7 @@ export function SignOutBtn({
   return (
     <div className="flex cursor-pointer">
       <SignOutButton signOutCallback={handleSignOut} {...props}>
-        <div className="px-8 py-4 flex justify-start gap-2">
+        <div className="px-6 py-4 flex flex-1 justify-start gap-3">
           <Image
             src="/assets/logout.svg"
             alt="Sign out"

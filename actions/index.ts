@@ -4,4 +4,4 @@ export {
   fetchPostById,
   addComment,
 } from './post.actions';
-export { getUser, updateUser } from './user.actions';
+export { getUser, getUserPosts, updateUser } from './user.actions';

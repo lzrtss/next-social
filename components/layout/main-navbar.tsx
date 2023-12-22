@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { SignedIn } from '@clerk/nextjs';
 
-import { Container } from '@/components/server';
 import { SignOutBtn, NavLink } from '@/components/client';
 
 interface MenuItem {

@@ -47,7 +47,7 @@ export default function PostCard({
               />
             </Link>
 
-            <div className="relative mt-2 w-0.5 grow rounded-full bg-neutral-600" />
+            <div className="relative mt-2 w-[1px] grow rounded-full bg-neutral-600" />
           </div>
 
           <div className="w-full flex flex-col">

@@ -6,13 +6,13 @@ import { fetchPostById, getUser } from '@/actions';
 import { AddCommentForm } from '@/components/client';
 import { IPost } from '@/types/post.interface';
 
-interface PostProps {
+interface PageProps {
   params: {
     id: string;
   };
 }
 
-export default async function Post({ params }: PostProps) {
+export default async function Page({ params }: PageProps) {
   const user = await currentUser();
 
   if (!params.id || !user) {
@@ -52,7 +52,7 @@ export default async function Post({ params }: PostProps) {
             />
           </div>
 
-          <div>
+          <div className="flex flex-col gap-10">
             {post.children.map((comment: IPost) => (
               <PostCard
                 key={comment._id}

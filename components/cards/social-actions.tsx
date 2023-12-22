@@ -18,8 +18,8 @@ export default function SocialActions({ id, className }: SocialActionsProps) {
       />
       <Link href={`/post/${id}`}>
         <Image
-          src="/assets/reply.svg"
-          alt="reply"
+          src="/assets/comment.svg"
+          alt="comment"
           width={24}
           height={24}
           className="object-contain cursor-pointer"

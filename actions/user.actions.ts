@@ -3,7 +3,7 @@
 import { revalidatePath } from 'next/cache';
 
 import { connectToDb } from '@/db/mongoose';
-import { User } from '@/db/models';
+import { Post, User } from '@/db/models';
 import { IUser } from '@/types/user.interface';
 
 interface UpdateUserParams extends IUser {
@@ -48,5 +48,27 @@ export const getUser = async (id: string) => {
     return await User.findOne({ id });
   } catch (error: any) {
     throw new Error(`User fetch failed: ${error.message}`);
+  }
+};
+
+export const getUserPosts = async (userId: string) => {
+  try {
+    connectToDb();
+
+    return await User.findOne({ id: userId }).populate({
+      path: 'posts',
+      model: Post,
+      populate: {
+        path: 'children',
+        model: Post,
+        populate: {
+          path: 'author',
+          model: User,
+          select: 'name image id',
+        },
+      },
+    });
+  } catch (error: any) {
+    throw new Error(`Failed to fetch User's posts: ${error.message}`);
   }
 };
