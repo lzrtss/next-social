@@ -2,11 +2,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 interface SocialActionsProps {
-  id: string;
+  postId: string;
   className?: string;
 }
 
-export default function SocialActions({ id, className }: SocialActionsProps) {
+export default function SocialActions({
+  postId,
+  className,
+}: SocialActionsProps) {
   return (
     <div className={`flex gap-3 ${className}`}>
       <Image
@@ -16,7 +19,7 @@ export default function SocialActions({ id, className }: SocialActionsProps) {
         height={24}
         className="object-contain cursor-pointer"
       />
-      <Link href={`/post/${id}`}>
+      <Link href={`/post/${postId}`}>
         <Image
           src="/assets/comment.svg"
           alt="comment"

@@ -1,4 +1,4 @@
-import { getUserPosts } from '@/actions';
+import { getUserComments, getUserPosts } from '@/actions';
 import { redirect } from 'next/navigation';
 import { PostCard } from '../server';
 
@@ -13,24 +13,24 @@ export default async function PostsTab({
   accountId,
   accountType,
 }: PostsTabProps) {
-  let result = await getUserPosts(accountId);
+  let postsData = await getUserPosts(accountId);
 
-  if (!result) {
+  if (!postsData) {
     redirect('/');
   }
 
   return (
     <section className="mt-8 flex flex-col gap-10">
-      {result.posts.map((post) => (
+      {postsData.posts.map((post) => (
         <PostCard
           key={post._id}
           id={post._id}
           author={
             accountType === 'User'
               ? {
-                  id: result.id,
-                  image: result.image,
-                  name: result.name,
+                  id: postsData.id,
+                  image: postsData.image,
+                  name: postsData.name,
                 }
               : {
                   id: post.author.id,

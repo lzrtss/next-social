@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 import { Container, PostsTab, ProfileInfo } from '@/components/server';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/client';
-import { getUser } from '@/actions';
+import { getUser, getUserComments, getUserPosts } from '@/actions';
 import { profileTabs } from '@/constants';
 
 interface PageProps {
@@ -21,12 +21,14 @@ export default async function Page({ params }: PageProps) {
   }
 
   const userInfo = await getUser(params.id);
+  const { posts } = await getUserPosts(params.id);
+  const { posts: comments } = await getUserComments(params.id);
+
+  const userData = { comments, posts, likes: userInfo.likedPosts };
 
   if (!userInfo?.onboarded) {
     redirect('/onboarding');
   }
-
-  console.log(userInfo);
 
   return (
     <main className="h-full bg-neutral-800">
@@ -47,7 +49,7 @@ export default async function Page({ params }: PageProps) {
                 <TabsTrigger
                   key={tab.label}
                   value={tab.value}
-                  className="flex gap-2 flex-1 data-[state=active]:bg-neutral-600 data-[state=active]:text-neutral-50 border-x-[1px] border-neutral-600"
+                  className="flex gap-2 flex-1 data-[state=active]:bg-neutral-700 data-[state=active]:text-neutral-50 border-x-[1px] border-neutral-600 cursor-auto"
                 >
                   <Image
                     src={tab.icon}
@@ -59,11 +61,9 @@ export default async function Page({ params }: PageProps) {
 
                   <p className="max-sm:hidden">{tab.label}</p>
 
-                  {tab.label === 'Posts' ? (
-                    <span className="block px-[8px] py-[2px] rounded-full bg-neutral-400 text-neutral-800">
-                      {userInfo?.posts?.length}
-                    </span>
-                  ) : null}
+                  <span className="block px-[8px] py-[2px] rounded-full bg-neutral-400 text-neutral-800">
+                    {userData?.[tab.value]?.length || 0}
+                  </span>
                 </TabsTrigger>
               ))}
             </TabsList>

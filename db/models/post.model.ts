@@ -10,6 +10,12 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  type: {
+    type: String,
+    enum: ['post', 'comment'],
+    required: true,
+    default: 'post',
+  },
   community: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Community',

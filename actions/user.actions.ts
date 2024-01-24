@@ -72,3 +72,13 @@ export const getUserPosts = async (userId: string) => {
     throw new Error(`Failed to fetch User's posts: ${error.message}`);
   }
 };
+
+export const getUserComments = async (userId: string) => {
+  try {
+    connectToDb();
+
+    return await User.findOne({ id: userId, type: 'comment' });
+  } catch (error: any) {
+    throw new Error(`Failed to fetch User's posts: ${error.message}`);
+  }
+};

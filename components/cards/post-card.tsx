@@ -60,7 +60,7 @@ export default function PostCard({
             <p className="mt-2 ">{content}</p>
 
             <div className="mt-5 flex flex-col gap-3">
-              <SocialActions id={id} />
+              <SocialActions postId={id} />
 
               {isComment && comments.length > 0 ? (
                 <CommentsPreview id={id} numberOfComments={comments.length} />
