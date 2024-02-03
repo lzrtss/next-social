@@ -21,10 +21,10 @@ async function Page() {
   return (
     <main className="h-full bg-neutral-800">
       <Container>
-        <h1 className="mt-2 text-4xl">Create Post</h1>
+        <h1 className="mt-2 text-4xl">Create a post</h1>
         <CreatePostForm
           userId={userInfo._id.toString()}
-          btnLabel="Create"
+          btnLabel="Publish"
           className="my-8"
         />
       </Container>

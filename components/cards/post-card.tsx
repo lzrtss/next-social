@@ -52,7 +52,7 @@ export default function PostCard({
 
           <div className="w-full flex flex-col">
             <Link href={`/profile/${author.id}`} className="w-fit">
-              <h2 className="cursor-pointer font-semibold italic text-neutral-400">
+              <h2 className="cursor-pointer font-semibold italic text-neutral-400 hover:underline hover:underline-offset-2">
                 {author.name}
               </h2>
             </Link>

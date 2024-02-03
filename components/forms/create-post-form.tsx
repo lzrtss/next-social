@@ -62,14 +62,12 @@ export default function CreatePostForm({
           name="post"
           render={({ field }) => (
             <FormItem className="w-full flex flex-col gap-2">
-              <FormLabel className="font-medium text-neutral-100">
-                Post
-              </FormLabel>
               <FormControl className="border bg-neutral-700 border-neutral-800 text-neutral-50 focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0">
                 <Textarea
                   placeholder="Type your post here"
-                  rows={15}
+                  rows={5}
                   {...field}
+                  className="text-md rounded-lg"
                 />
               </FormControl>
               <FormMessage />
@@ -77,7 +75,11 @@ export default function CreatePostForm({
           )}
         />
 
-        <Button type="submit" variant="secondary" className="rounded-lg">
+        <Button
+          type="submit"
+          variant="ghost"
+          className="text-md border-[1px] border-neutral-100 rounded-lg"
+        >
           {btnLabel}
         </Button>
       </form>

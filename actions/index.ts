@@ -6,6 +6,7 @@ export {
 } from './post.actions';
 export {
   getUser,
+  getUsers,
   getUserPosts,
   getUserComments,
   updateUser,

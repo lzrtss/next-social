@@ -26,7 +26,9 @@ export default function NavLink({
     <Link
       href={href === '/profile' ? `${href}/${userId}` : href}
       {...props}
-      className={`${isActive ? 'bg-orange-400' : ''} ${className}`}
+      className={`${
+        isActive ? ' rounded-tl-lg rounded-bl-lg bg-orange-400' : ''
+      } ${className}`}
     >
       {children}
     </Link>

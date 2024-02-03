@@ -22,7 +22,10 @@ export default async function Page({ params }: PageProps) {
 
   const userInfo = await getUser(params.id);
   const { posts } = await getUserPosts(params.id);
-  const { posts: comments } = await getUserComments(params.id);
+
+  const res = await getUserComments(params.id);
+
+  const comments = res.posts;
 
   const userData = { comments, posts, likes: userInfo.likedPosts };
 
@@ -59,11 +62,12 @@ export default async function Page({ params }: PageProps) {
                     className="object-contain"
                   />
 
-                  <p className="max-sm:hidden">{tab.label}</p>
-
-                  <span className="block px-[8px] py-[2px] rounded-full bg-neutral-400 text-neutral-800">
-                    {userData?.[tab.value]?.length || 0}
-                  </span>
+                  <p className="text-neutral-400 max-sm:hidden">
+                    <span className="font-medium">{tab.label}</span>:{' '}
+                    <span className="font-semibold text-neutral-300">
+                      {userData?.[tab.value]?.length || 0}
+                    </span>
+                  </p>
                 </TabsTrigger>
               ))}
             </TabsList>

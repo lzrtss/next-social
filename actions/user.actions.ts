@@ -1,6 +1,7 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
+import { FilterQuery, SortOrder } from 'mongoose';
 
 import { connectToDb } from '@/db/mongoose';
 import { Post, User } from '@/db/models';
@@ -51,6 +52,56 @@ export const getUser = async (id: string) => {
   }
 };
 
+export const getUsers = async ({
+  userId,
+  searchQuery = '',
+  pageNumber = 1,
+  pageSize = 20,
+  sortBy = 'desc',
+}: {
+  userId: string;
+  searchQuery?: string;
+  pageNumber?: number;
+  pageSize?: number;
+  sortBy?: SortOrder;
+}) => {
+  try {
+    connectToDb();
+
+    const skipAmount = (pageNumber - 1) * pageSize;
+
+    const regex = new RegExp(searchQuery, 'i');
+
+    const query: FilterQuery<typeof User> = {
+      id: { $ne: userId },
+    };
+
+    if (searchQuery.trim() !== '') {
+      query.$or = [
+        { username: { $regex: regex } },
+        { name: { $regex: regex } },
+      ];
+    }
+
+    const sortOptions = { createdAt: sortBy };
+
+    const usersQuery = User.find(query)
+      .sort(sortOptions)
+      .skip(skipAmount)
+      .limit(pageSize);
+
+    const totalUsersNumber = await User.countDocuments(query);
+
+    const users = await usersQuery.exec();
+
+    const isNext = totalUsersNumber > skipAmount + users.length;
+
+    return { users, isNext };
+  } catch (error: any) {
+    throw new Error(`Failed to fetch users: ${error.message}`);
+  }
+};
+
 export const getUserPosts = async (userId: string) => {
   try {
     connectToDb();
@@ -79,6 +130,6 @@ export const getUserComments = async (userId: string) => {
 
     return await User.findOne({ id: userId, type: 'comment' });
   } catch (error: any) {
-    throw new Error(`Failed to fetch User's posts: ${error.message}`);
+    throw new Error(`Failed to fetch User's comments: ${error.message}`);
   }
 };

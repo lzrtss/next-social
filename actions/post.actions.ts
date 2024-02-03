@@ -39,16 +39,16 @@ export const createPost = async ({
   }
 };
 
-export const fetchPosts = async (pageNumber = 1, postsPerPage = 20) => {
+export const fetchPosts = async (pageNumber = 1, pageSize = 20) => {
   try {
     connectToDb();
 
-    const skipAmount = (pageNumber - 1) * postsPerPage;
+    const skipAmount = (pageNumber - 1) * pageSize;
 
     const postsQuery = Post.find({ parentId: { $in: [null, undefined] } })
       .sort({ createdAt: 'desc' })
       .skip(skipAmount)
-      .limit(postsPerPage)
+      .limit(pageSize)
       .populate({ path: 'author', model: User })
       .populate({
         path: 'children',

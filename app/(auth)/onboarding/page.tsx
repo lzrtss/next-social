@@ -1,20 +1,28 @@
 import { currentUser } from '@clerk/nextjs';
+import { redirect } from 'next/navigation';
 
 import { UserProfileForm } from '@/components/client';
 import { Container } from '@/components/server';
+import { getUser } from '@/actions';
 
 export default async function Onboarding() {
   const user = await currentUser();
+  if (!user) {
+    return null;
+  }
 
-  const userInfo = {};
+  const userInfo = await getUser(user?.id);
+  if (userInfo?.onboarded) {
+    redirect('/');
+  }
 
   const userData = {
     id: user?.id,
     objectId: userInfo?._id,
-    image: userInfo?.image || user?.imageUrl,
-    name: userInfo?.name || user?.firstName || '',
-    username: userInfo?.username || user?.username,
-    bio: userInfo?.bio || '',
+    image: userInfo ? userInfo?.image : user?.imageUrl,
+    name: userInfo ? userInfo?.name : user?.firstName || '',
+    username: userInfo ? userInfo?.username : user?.username,
+    bio: userInfo ? userInfo?.bio : '',
   };
 
   return (

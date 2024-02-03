@@ -41,7 +41,7 @@ export default function ProfileInfo({
 
       <p className="mt-6 max-w-lg text-neutral-100">{bio}</p>
 
-      <div className="mt-10 h-[1px] w-full bg-neutral-600" />
+      <div className="mt-8 h-[1px] w-full bg-neutral-700" />
     </div>
   );
 }
