@@ -42,7 +42,7 @@ export const updateUser = async ({
   }
 };
 
-export const getUser = async (id: string) => {
+export const getUserById = async (id: string) => {
   try {
     connectToDb();
 
@@ -52,7 +52,7 @@ export const getUser = async (id: string) => {
   }
 };
 
-export const getUsers = async ({
+export const getAllUsers = async ({
   userId,
   searchQuery = '',
   pageNumber = 1,
@@ -102,7 +102,7 @@ export const getUsers = async ({
   }
 };
 
-export const getUserPosts = async (userId: string) => {
+export const getAllUserPosts = async (userId: string) => {
   try {
     connectToDb();
 
@@ -124,11 +124,25 @@ export const getUserPosts = async (userId: string) => {
   }
 };
 
-export const getUserComments = async (userId: string) => {
+export const getAllUserComments = async (userId: string) => {
   try {
     connectToDb();
 
-    return await User.findOne({ id: userId, type: 'comment' });
+    const user = await User.findOne({ id: userId }).populate({
+      path: 'comments',
+      model: Post,
+      populate: {
+        path: 'author',
+        model: User,
+        select: 'name image id',
+      },
+    });
+
+    if (!user) {
+      throw new Error('User not found');
+    }
+
+    return user.comments;
   } catch (error: any) {
     throw new Error(`Failed to fetch User's comments: ${error.message}`);
   }

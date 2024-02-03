@@ -11,7 +11,7 @@ import { SignOutBtn } from '@/components/client';
 
 export default function Header() {
   return (
-    <header className="sticky top-0 w-full border-b border-b-neutral-700 bg-neutral-800 z-20">
+    <header className="w-full">
       <Container className="max-w-7xl">
         <nav className="flex justify-between items-center">
           <Link href="/">

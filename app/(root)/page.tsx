@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation';
 
 import { Pagination } from '@/components/client';
 import { Container, PostCard } from '@/components/server';
-import { fetchPosts, getUser } from '@/actions';
+import { getAllPosts, getUserById } from '@/actions';
 
 interface PageProps {
   searchParams: { [key: string]: string | undefined };
@@ -16,19 +16,19 @@ export default async function Page({ searchParams }: PageProps) {
     return null;
   }
 
-  const userInfo = await getUser(user.id);
+  const userInfo = await getUserById(user.id);
 
   if (!userInfo?.onboarded) {
     redirect('/onboarding');
   }
 
-  const { posts, isNext } = await fetchPosts(
+  const { posts, isNext } = await getAllPosts(
     searchParams.page ? Number(searchParams.page) : 1,
     20,
   );
 
   return (
-    <main className="h-full bg-neutral-800">
+    <main className="h-full">
       <Container>
         <h1 className="mt-2 mb-6 text-4xl">Posts</h1>
 

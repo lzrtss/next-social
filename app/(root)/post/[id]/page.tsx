@@ -2,8 +2,8 @@ import { currentUser } from '@clerk/nextjs';
 import { redirect } from 'next/navigation';
 
 import { Container, PostCard } from '@/components/server';
-import { fetchPostById, getUser } from '@/actions';
-import { AddCommentForm } from '@/components/client';
+import { getPostById, getUserById } from '@/actions';
+import { CreateCommentForm } from '@/components/client';
 import { IPost } from '@/types/post.interface';
 
 interface PageProps {
@@ -19,16 +19,16 @@ export default async function Page({ params }: PageProps) {
     return null;
   }
 
-  const post = await fetchPostById(params.id);
+  const post = await getPostById(params.id);
 
-  const userInfo = await getUser(user.id);
+  const userInfo = await getUserById(user.id);
 
   if (!userInfo.onboarded) {
     redirect('/onboarding');
   }
 
   return (
-    <main className="h-full bg-neutral-800">
+    <main className="h-full">
       <Container>
         <section className="relative">
           <div className="mb-10">
@@ -45,7 +45,7 @@ export default async function Page({ params }: PageProps) {
           </div>
 
           <div className="mb-10">
-            <AddCommentForm
+            <CreateCommentForm
               postId={post.id}
               userId={JSON.stringify(userInfo._id)}
               userImageUrl={userInfo.image}

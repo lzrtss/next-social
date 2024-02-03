@@ -16,21 +16,21 @@ import {
   Input,
 } from '@/components/client';
 import { commentValidation } from '@/lib/form-validation';
-import { addComment } from '@/actions';
+import { createComment } from '@/actions';
 
-interface AddCommentFormProps {
+interface CreateCommentFormProps {
   postId: string;
   userId: string;
   userImageUrl: string;
   className?: string;
 }
 
-export default function AddCommentForm({
+export default function createCommentForm({
   postId,
   userId,
   userImageUrl,
   className,
-}: AddCommentFormProps) {
+}: CreateCommentFormProps) {
   const pathname = usePathname();
 
   const form = useForm({
@@ -41,7 +41,7 @@ export default function AddCommentForm({
   });
 
   const onSubmit = async (values: z.infer<typeof commentValidation>) => {
-    await addComment({
+    await createComment({
       text: values.comment,
       path: pathname,
       postId,
@@ -55,7 +55,7 @@ export default function AddCommentForm({
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className={`mt-10 flex items-center gap-4 border-y border-y-neutral-700 py-5 max-xs:flex-col ${className}`}
+        className={`mt-10 flex items-center gap-4 border-y border-y-neutral-700 py-5 max-sm:flex-col ${className}`}
         autoComplete="off"
       >
         <FormField
@@ -72,12 +72,13 @@ export default function AddCommentForm({
                   className="object-cover rounded-full"
                 />
               </FormLabel>
-              <FormControl className="border-none bg-transparent text-neutral-50 focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0">
+              <FormControl className="bg-transparent text-neutral-50 focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0">
                 <Input
                   type="text"
                   placeholder="Type your comment here"
-                  className="outline-none"
                   {...field}
+                  className="outline-none border-none"
+                  autoFocus
                 />
               </FormControl>
             </FormItem>
@@ -87,7 +88,7 @@ export default function AddCommentForm({
         <Button
           type="submit"
           variant="secondary"
-          className="rounded-lg max-xs:w-full"
+          className="rounded-lg max-sm:w-full"
         >
           Add Comment
         </Button>

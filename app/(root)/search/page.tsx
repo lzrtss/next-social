@@ -3,7 +3,7 @@ import { currentUser } from '@clerk/nextjs';
 
 import { Pagination, SearchBar } from '@/components/client';
 import { Container, UserCard } from '@/components/server';
-import { getUser, getUsers } from '@/actions';
+import { getUserById, getAllUsers } from '@/actions';
 
 interface PageProps {
   searchParams: { [key: string]: string | undefined };
@@ -16,13 +16,13 @@ export default async function Page({ searchParams }: PageProps) {
     return null;
   }
 
-  const userInfo = await getUser(user.id);
+  const userInfo = await getUserById(user.id);
 
   if (!userInfo?.onboarded) {
     redirect('/onboarding');
   }
 
-  const { users, isNext } = await getUsers({
+  const { users, isNext } = await getAllUsers({
     userId: user.id,
     searchQuery: searchParams.q,
     pageNumber: searchParams?.page ? Number(searchParams.page) : 1,
@@ -30,7 +30,7 @@ export default async function Page({ searchParams }: PageProps) {
   });
 
   return (
-    <main className="h-full bg-neutral-800">
+    <main className="h-full">
       <Container>
         <h1 className="mt-2 mb-6 text-4xl">User search</h1>
 

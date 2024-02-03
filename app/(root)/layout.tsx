@@ -25,17 +25,19 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} bg-neutral-800`}>
         <AuthProvider>
-          <Header />
-          <div className="max-w-7xl mx-auto flex justify-between">
-            <MainNavbar links={mainNavbarLinks} />
-            <div className="min-h-screen w-full flex-1 bg-neutral-800">
-              {children}
+          <div className="min-h-screen flex flex-col">
+            <Header />
+            <div className="flex-1 w-full flex justify-between items-stretch max-w-7xl mx-auto">
+              <MainNavbar links={mainNavbarLinks} />
+              <div className="flex-1 overflow-y-auto p-4 rounded-lg border border-neutral-700">
+                {children}
+              </div>
+              <CommunitiesNavbar />
             </div>
-            <CommunitiesNavbar />
+            <Footer />
           </div>
-          <Footer />
         </AuthProvider>
       </body>
     </html>

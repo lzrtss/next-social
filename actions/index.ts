@@ -1,13 +1,13 @@
 export {
   createPost,
-  fetchPosts,
-  fetchPostById,
-  addComment,
+  getAllPosts,
+  getPostById,
+  createComment,
 } from './post.actions';
 export {
-  getUser,
-  getUsers,
-  getUserPosts,
-  getUserComments,
+  getUserById,
+  getAllUsers,
+  getAllUserPosts,
+  getAllUserComments,
   updateUser,
 } from './user.actions';

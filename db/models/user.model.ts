@@ -30,7 +30,7 @@ const userSchema = new mongoose.Schema({
       ref: 'Post',
     },
   ],
-  likedPosts: [
+  comments: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Post',
@@ -40,6 +40,12 @@ const userSchema = new mongoose.Schema({
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Community',
+    },
+  ],
+  likes: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Post',
     },
   ],
 });

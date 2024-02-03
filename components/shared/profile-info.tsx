@@ -20,7 +20,7 @@ export default function ProfileInfo({
   return (
     <div className="w-full flex flex-col justify-start">
       <div className="flex items-center justify-between">
-        <div className="flex items-start gap-4">
+        <div className="flex items-center gap-4">
           <div className="relative h-20 w-20 object-cover">
             <Image
               src={imgUrl}
@@ -40,8 +40,6 @@ export default function ProfileInfo({
       </div>
 
       <p className="mt-6 max-w-lg text-neutral-100">{bio}</p>
-
-      <div className="mt-8 h-[1px] w-full bg-neutral-700" />
     </div>
   );
 }

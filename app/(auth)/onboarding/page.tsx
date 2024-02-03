@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation';
 
 import { UserProfileForm } from '@/components/client';
 import { Container } from '@/components/server';
-import { getUser } from '@/actions';
+import { getUserById } from '@/actions';
 
 export default async function Onboarding() {
   const user = await currentUser();
@@ -11,7 +11,7 @@ export default async function Onboarding() {
     return null;
   }
 
-  const userInfo = await getUser(user?.id);
+  const userInfo = await getUserById(user?.id);
   if (userInfo?.onboarded) {
     redirect('/');
   }
@@ -34,7 +34,7 @@ export default async function Onboarding() {
           <span className="font-medium">Posts</span>
         </p>
 
-        <section className="p-8 bg-neutral-800 rounded-md border border-neutral-700">
+        <section className="p-8 rounded-lg border border-neutral-700">
           <UserProfileForm user={userData} btnLabel="Save" />
         </section>
       </Container>

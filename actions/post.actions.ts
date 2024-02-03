@@ -28,7 +28,6 @@ export const createPost = async ({
       community: null,
     });
 
-    // Update User's post array
     await User.findByIdAndUpdate(author, {
       $push: { posts: createdPost._id },
     });
@@ -39,7 +38,7 @@ export const createPost = async ({
   }
 };
 
-export const fetchPosts = async (pageNumber = 1, pageSize = 20) => {
+export const getAllPosts = async (pageNumber = 1, pageSize = 20) => {
   try {
     connectToDb();
 
@@ -73,7 +72,7 @@ export const fetchPosts = async (pageNumber = 1, pageSize = 20) => {
   }
 };
 
-export const fetchPostById = async (id: string) => {
+export const getPostById = async (id: string) => {
   try {
     connectToDb();
 
@@ -110,7 +109,7 @@ export const fetchPostById = async (id: string) => {
   }
 };
 
-export const addComment = async ({
+export const createComment = async ({
   text,
   path,
   postId,
@@ -142,6 +141,10 @@ export const addComment = async ({
     originalPost.children.push(savedComment._id);
 
     await originalPost.save();
+
+    await User.findByIdAndUpdate(userId, {
+      $push: { comments: savedComment._id },
+    });
 
     revalidatePath(path);
   } catch (error: any) {

@@ -11,7 +11,6 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
   Textarea,
 } from '@/components/client';
@@ -55,7 +54,7 @@ export default function CreatePostForm({
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className={`flex flex-col justify-start gap-8 ${className}`}
+        className={`flex flex-col gap-6 ${className}`}
       >
         <FormField
           control={form.control}
@@ -68,6 +67,7 @@ export default function CreatePostForm({
                   rows={5}
                   {...field}
                   className="text-md rounded-lg"
+                  autoFocus
                 />
               </FormControl>
               <FormMessage />
@@ -77,8 +77,8 @@ export default function CreatePostForm({
 
         <Button
           type="submit"
-          variant="ghost"
-          className="text-md border-[1px] border-neutral-100 rounded-lg"
+          variant="secondary"
+          className="w-[240px] text-md rounded-lg"
         >
           {btnLabel}
         </Button>

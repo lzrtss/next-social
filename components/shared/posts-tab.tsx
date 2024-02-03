@@ -1,4 +1,4 @@
-import { getUserComments, getUserPosts } from '@/actions';
+import { getAllUserComments, getAllUserPosts } from '@/actions';
 import { redirect } from 'next/navigation';
 import { PostCard } from '../server';
 
@@ -13,7 +13,7 @@ export default async function PostsTab({
   accountId,
   accountType,
 }: PostsTabProps) {
-  let postsData = await getUserPosts(accountId);
+  let postsData = await getAllUserPosts(accountId);
 
   if (!postsData) {
     redirect('/');
