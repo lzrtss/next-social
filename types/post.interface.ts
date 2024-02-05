@@ -1,4 +1,5 @@
 export interface IAuthor {
+  _id?: string;
   id: string;
   image: string;
   name: string;

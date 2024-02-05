@@ -1,32 +1,37 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
 
 import SocialActions from './social-actions';
 import CommentsPreview from './comments-preview';
 import { IAuthor, ICommunity, IPost } from '@/types/post.interface';
+import { deletePostById } from '@/actions';
+import { DeleteBtn } from '../client';
 
 interface PostCardProps {
   id: string;
+  parentId: string | null;
   author: IAuthor;
   currentUserId: string | undefined;
   community: ICommunity | null;
   comments: IPost[];
   content: string;
   createdAt: string;
-  parentId: string | null;
   isComment?: boolean;
+  isEdited?: boolean;
 }
 
 export default function PostCard({
   id,
+  parentId,
   author,
   currentUserId,
   community,
   comments,
   content,
   createdAt,
-  parentId,
   isComment,
+  isEdited = false,
 }: PostCardProps) {
   return (
     <article
@@ -68,6 +73,14 @@ export default function PostCard({
             </div>
           </div>
         </div>
+
+        {author.id === currentUserId ? (
+          <DeleteBtn
+            postId={JSON.stringify(id)}
+            parentId={parentId}
+            isComment={isComment}
+          />
+        ) : null}
       </div>
     </article>
   );

@@ -1,4 +1,4 @@
-import { getAllUserComments, getAllUserPosts } from '@/actions';
+import { getAllUserPosts } from '@/actions';
 import { redirect } from 'next/navigation';
 import { PostCard } from '../server';
 

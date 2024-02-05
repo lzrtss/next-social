@@ -1,8 +1,11 @@
 export {
   createPost,
-  getAllPosts,
-  getPostById,
   createComment,
+  getAllPosts,
+  getAllPostCommentsById,
+  getPostById,
+  deletePostById,
+  deleteCommentById,
 } from './post.actions';
 export {
   getUserById,

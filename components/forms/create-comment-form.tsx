@@ -20,15 +20,15 @@ import { createComment } from '@/actions';
 
 interface CreateCommentFormProps {
   postId: string;
-  userId: string;
-  userImageUrl: string;
+  currentUserId: string;
+  currentUserImageUrl: string;
   className?: string;
 }
 
 export default function createCommentForm({
   postId,
-  userId,
-  userImageUrl,
+  currentUserId,
+  currentUserImageUrl,
   className,
 }: CreateCommentFormProps) {
   const pathname = usePathname();
@@ -45,7 +45,7 @@ export default function createCommentForm({
       text: values.comment,
       path: pathname,
       postId,
-      userId: JSON.parse(userId),
+      userId: JSON.parse(currentUserId),
     });
 
     form.reset();
@@ -65,7 +65,7 @@ export default function createCommentForm({
             <FormItem className="w-full flex items-center gap-2">
               <FormLabel>
                 <Image
-                  src={userImageUrl}
+                  src={currentUserImageUrl}
                   alt="Profile image"
                   width={48}
                   height={48}
