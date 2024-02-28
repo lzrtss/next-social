@@ -17,8 +17,8 @@ export default function AuthProvider({
         variables: {
           colorPrimary: '#f8a055',
           colorTextSecondary: '#ccc',
-          colorBackground: '#333',
-          colorInputBackground: '#444',
+          colorBackground: '#222222',
+          colorInputBackground: '#444444',
         },
       }}
     >

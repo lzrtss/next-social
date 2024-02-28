@@ -32,7 +32,7 @@ export default async function Page({ searchParams }: PageProps) {
       <Container>
         <h1 className="mt-2 mb-6 text-4xl">Recent posts</h1>
 
-        <section className="flex flex-col gap-10">
+        <section className="flex flex-col gap-6">
           {posts.length > 0 ? (
             <>
               {posts.map((post) => (
@@ -41,7 +41,6 @@ export default async function Page({ searchParams }: PageProps) {
                   id={post._id}
                   author={post.author}
                   currentUserId={user?.id}
-                  comments={post.children}
                   content={post.text}
                   createdAt={post.createdAt}
                   parentId={post.parentId}
@@ -49,7 +48,7 @@ export default async function Page({ searchParams }: PageProps) {
               ))}
             </>
           ) : (
-            <p className="text-center text-neutral-50">No posts to show...</p>
+            <p className="text-center text-neutral-50">No posts to show</p>
           )}
         </section>
 

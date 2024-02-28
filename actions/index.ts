@@ -12,5 +12,6 @@ export {
   getAllUsers,
   getAllUserPosts,
   getAllUserComments,
+  getUserActivity,
   updateUser,
 } from './user.actions';

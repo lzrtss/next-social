@@ -147,3 +147,31 @@ export const getAllUserComments = async (userId: string) => {
     throw new Error(`Failed to fetch User's comments: ${error.message}`);
   }
 };
+
+export const getUserActivity = async (userId: string) => {
+  try {
+    connectToDb();
+
+    // Find all posts created by the user
+    const userPosts = await Post.find({ author: userId });
+
+    // Collect all the child post ids (comments) from the 'children' field of each user post
+    const childPostIds = userPosts.reduce((acc, userPost) => {
+      return acc.concat(userPost.children);
+    }, []);
+
+    // Find and return the child posts (comments) excluding the ones created by the same user
+    const comments = await Post.find({
+      _id: { $in: childPostIds },
+      author: { $ne: userId }, // Exclude posts authored by the same user
+    }).populate({
+      path: 'author',
+      model: User,
+      select: 'id createdAt name username image _id',
+    });
+
+    return comments;
+  } catch (error: any) {
+    throw new Error(`Failed to fetch User's activity: ${error.message}`);
+  }
+};

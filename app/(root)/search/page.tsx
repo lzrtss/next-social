@@ -34,11 +34,11 @@ export default async function Page({ searchParams }: PageProps) {
       <Container>
         <h1 className="mt-2 mb-6 text-4xl">User search</h1>
 
-        <div className="pb-8 border-b-[1px] border-neutral-750">
+        <div className="pb-6 border-b-[1px] border-neutral-750">
           <SearchBar routeType="search" />
         </div>
 
-        <section className="mt-8 flex flex-col gap-8">
+        <section className="mt-6 flex flex-col gap-6">
           {users.length > 0 ? (
             <>
               {users.map((user) => (
@@ -52,7 +52,7 @@ export default async function Page({ searchParams }: PageProps) {
               ))}
             </>
           ) : (
-            <p className="text-center text-neutral-50">No users to show...</p>
+            <p className="text-center text-neutral-50">No users to show</p>
           )}
         </section>
 

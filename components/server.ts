@@ -1,3 +1,4 @@
+export { default as ActivityCard } from './cards/activity-card';
 export { default as PostCard } from './cards/post-card';
 export { default as UserCard } from './cards/user-card';
 
