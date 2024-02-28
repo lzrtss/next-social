@@ -9,12 +9,14 @@ interface DeleteBtnProps {
   postId: string;
   parentId: string | null;
   isComment?: boolean;
+  className?: string;
 }
 
 export default function DeleteBtn({
   postId,
   parentId,
   isComment = false,
+  className = '',
 }: DeleteBtnProps) {
   const pathname = usePathname();
   const router = useRouter();
@@ -37,7 +39,7 @@ export default function DeleteBtn({
       alt="Delete post"
       width={18}
       height={18}
-      className="cursor-pointer object-contain"
+      className={`cursor-pointer object-contain ${className}`}
       onClick={handleDelete}
     />
   );

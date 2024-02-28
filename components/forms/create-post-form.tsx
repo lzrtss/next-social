@@ -43,7 +43,7 @@ export default function CreatePostForm({
     await createPost({
       author: userId,
       text: values.post,
-      communityId: null,
+
       path: pathname,
     });
 
@@ -61,9 +61,9 @@ export default function CreatePostForm({
           name="post"
           render={({ field }) => (
             <FormItem className="w-full flex flex-col gap-2">
-              <FormControl className="border bg-neutral-700 border-neutral-800 text-neutral-50 focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0">
+              <FormControl className="border bg-neutral-750 border-neutral-800 text-neutral-50 focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0">
                 <Textarea
-                  placeholder="Type your post here"
+                  placeholder="Post (280 chars max)"
                   rows={5}
                   {...field}
                   className="text-md rounded-lg"

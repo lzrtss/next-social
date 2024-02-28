@@ -13,23 +13,26 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
   Input,
 } from '@/components/client';
 import { commentValidation } from '@/lib/form-validation';
 import { createComment } from '@/actions';
 
 interface CreateCommentFormProps {
-  postId: string;
+  btnLabel: string;
   currentUserId: string;
   currentUserImageUrl: string;
   className?: string;
+  postId: string;
 }
 
 export default function createCommentForm({
-  postId,
+  btnLabel,
   currentUserId,
   currentUserImageUrl,
   className,
+  postId,
 }: CreateCommentFormProps) {
   const pathname = usePathname();
 
@@ -55,7 +58,7 @@ export default function createCommentForm({
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className={`mt-10 flex items-center gap-4 border-y border-y-neutral-700 py-5 max-sm:flex-col ${className}`}
+        className={`flex items-center gap-4 border-y border-y-neutral-750 py-5 max-sm:flex-col ${className}`}
         autoComplete="off"
       >
         <FormField
@@ -75,12 +78,13 @@ export default function createCommentForm({
               <FormControl className="bg-transparent text-neutral-50 focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0">
                 <Input
                   type="text"
-                  placeholder="Type your comment here"
+                  placeholder="Comment (280 chars max)"
                   {...field}
                   className="outline-none border-none"
                   autoFocus
                 />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -90,7 +94,7 @@ export default function createCommentForm({
           variant="secondary"
           className="rounded-lg max-sm:w-full"
         >
-          Add Comment
+          {btnLabel}
         </Button>
       </form>
     </Form>

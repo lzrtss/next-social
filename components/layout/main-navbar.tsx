@@ -15,7 +15,7 @@ interface MainNavbarProps {
 
 export default function MainNavbar({ links }: MainNavbarProps) {
   return (
-    <aside className="py-8 fixed bottom-0 w-full z-10 custom-scrollbar md:sticky md:left-0 md:top-0 md:w-fit md:flex-col md:overflow-auto">
+    <aside className="py-3 fixed bottom-0 w-full bg-neutral-750 z-10 custom-scrollbar md:py-8 md:sticky md:left-0 md:top-0 md:w-fit md:flex-col md:overflow-auto">
       <nav>
         <ul className="w-full flex flex-1 flex-row justify-between md:justify-start md:gap-4 md:flex-col">
           {links.map((link) => (

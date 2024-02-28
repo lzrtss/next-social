@@ -39,7 +39,6 @@ export default async function PostsTab({
                 }
           }
           currentUserId={currentUserId}
-          community={post.community}
           comments={post.children}
           content={post.text}
           createdAt={post.createdAt}

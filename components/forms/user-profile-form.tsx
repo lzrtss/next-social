@@ -117,7 +117,7 @@ export default function UserProfileForm({
           name="image"
           render={({ field }) => (
             <FormItem className="flex items-center gap-2">
-              <FormLabel className="flex h-24 w-24 items-center justify-center rounded-full bg-neutral-700">
+              <FormLabel className="flex h-24 w-24 items-center justify-center rounded-full bg-neutral-750">
                 {field.value ? (
                   <Image
                     src={field.value}
@@ -162,7 +162,7 @@ export default function UserProfileForm({
               <FormControl>
                 <Input
                   type="text"
-                  className="px-4 py-2 border-none bg-neutral-700 text-neutral-50 focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0"
+                  className="px-4 py-2 border-none bg-neutral-750 text-neutral-50 focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0"
                   {...field}
                 />
               </FormControl>
@@ -182,7 +182,7 @@ export default function UserProfileForm({
               <FormControl>
                 <Input
                   type="text"
-                  className="px-4 py-2 border-none bg-neutral-700 text-neutral-50 focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0"
+                  className="px-4 py-2 border-none bg-neutral-750 text-neutral-50 focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0"
                   {...field}
                 />
               </FormControl>
@@ -199,7 +199,7 @@ export default function UserProfileForm({
               <FormControl>
                 <Textarea
                   rows={10}
-                  className="px-4 py-2 border-none bg-neutral-700 text-neutral-50 focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0"
+                  className="px-4 py-2 border-none bg-neutral-750 text-neutral-50 focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0"
                   {...field}
                 />
               </FormControl>

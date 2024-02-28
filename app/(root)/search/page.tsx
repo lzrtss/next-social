@@ -34,7 +34,7 @@ export default async function Page({ searchParams }: PageProps) {
       <Container>
         <h1 className="mt-2 mb-6 text-4xl">User search</h1>
 
-        <div className="pb-8 border-b-[1px] border-neutral-700">
+        <div className="pb-8 border-b-[1px] border-neutral-750">
           <SearchBar routeType="search" />
         </div>
 

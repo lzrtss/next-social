@@ -43,15 +43,15 @@ export default async function Page({ params }: PageProps) {
           bio={userInfo.bio}
         />
 
-        <div className="mt-6 h-[1px] w-full bg-neutral-700" />
+        <div className="mt-6 h-[1px] w-full bg-neutral-750" />
 
         <Tabs defaultValue="posts" className="w-full mt-8">
-          <TabsList className="mb-10 p-0 h-full flex flex-1 items-center rounded-lg overflow-hidden bg-neutral-700 text-neutral-100">
+          <TabsList className="mb-10 p-0 h-full flex flex-1 items-center rounded-lg overflow-hidden bg-neutral-750 text-neutral-100">
             {profileTabs.map((tab) => (
               <TabsTrigger
                 key={tab.label}
                 value={tab.value}
-                className="flex gap-2 flex-1 data-[state=active]:bg-neutral-700 data-[state=active]:text-neutral-50 border-x-[1px] border-neutral-600 cursor-auto"
+                className="flex gap-2 flex-1 data-[state=active]:bg-neutral-750 data-[state=active]:text-neutral-50 border-r last:border-0 border-neutral-700 cursor-auto"
               >
                 <Image
                   src={tab.icon}

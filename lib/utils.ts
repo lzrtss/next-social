@@ -9,3 +9,13 @@ export function isBase64Image(imageData: string) {
   const base64Regex = /^data:image\/(png|jpe?g|gif|webp);base64,/;
   return base64Regex.test(imageData);
 }
+
+export function formatDate(date: string) {
+  return new Date(date).toLocaleString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+  });
+}

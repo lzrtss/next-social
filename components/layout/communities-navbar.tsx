@@ -3,7 +3,7 @@ import { Container } from '@/components/server';
 export default function CommunitiesNavbar() {
   return (
     <aside
-      className="hidden xl:sticky right-0 top-0 h-screen w-fit z-10 overflow-auto custom-scrollbar border-l border-l-neutral-700 max-xl:hidden;
+      className="hidden xl:sticky right-0 top-0 h-screen w-fit z-10 overflow-auto custom-scrollbar border-l border-l-neutral-750 max-xl:hidden;
   "
     >
       <Container className="flex flex-col justify-between gap-10">

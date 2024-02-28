@@ -31,42 +31,39 @@ export default async function Page({ params }: PageProps) {
     <main className="h-full">
       <Container>
         <section className="relative">
-          <div className="mb-10">
+          <div className="mb-8">
             <PostCard
-              id={JSON.stringify(post._id)}
+              id={post._id}
               author={post.author}
               currentUserId={user?.id}
-              community={post.community}
-              comments={post.children}
               content={post.text}
               createdAt={post.createdAt}
               parentId={post.parentId}
             />
           </div>
 
-          <div className="mb-10">
-            <CreateCommentForm
-              postId={post.id}
-              currentUserId={JSON.stringify(userInfo._id)}
-              currentUserImageUrl={userInfo.image}
-            />
-          </div>
-
-          <div className="flex flex-col gap-10">
+          <div className="flex flex-col items-end gap-8">
             {post.children.map((comment: IPost) => (
               <PostCard
                 key={comment._id}
                 id={comment._id}
                 author={comment.author}
                 currentUserId={user?.id}
-                community={comment.community}
-                comments={comment.children}
                 content={comment.text}
                 createdAt={comment.createdAt}
                 parentId={comment.parentId}
                 isComment
               />
             ))}
+          </div>
+
+          <div className="w-[95%] ml-auto mt-8">
+            <CreateCommentForm
+              btnLabel="Add comment"
+              currentUserId={JSON.stringify(userInfo._id)}
+              currentUserImageUrl={userInfo.image}
+              postId={post.id}
+            />
           </div>
         </section>
       </Container>

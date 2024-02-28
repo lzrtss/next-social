@@ -4,7 +4,7 @@ import { Container } from '@/components/server';
 
 export default function Footer() {
   return (
-    <footer className="hidden md:block w-full">
+    <footer className="hidden md:block w-full bg-neutral-750">
       <Container className="max-w-7xl flex justify-center items-center gap-1">
         <p className="text-sm text-neutral-400">
           Copyright &copy; {new Date().getFullYear()}{' '}

@@ -9,16 +9,10 @@ import { IPost } from '@/types/post.interface';
 interface CreatePostParams {
   author: string;
   text: string;
-  communityId: string | null;
   path: string;
 }
 
-export const createPost = async ({
-  author,
-  text,
-  communityId,
-  path,
-}: CreatePostParams) => {
+export const createPost = async ({ author, text, path }: CreatePostParams) => {
   try {
     connectToDb();
 
@@ -26,7 +20,6 @@ export const createPost = async ({
       author,
       text,
       type: 'post',
-      community: null,
     });
 
     await User.findByIdAndUpdate(author, {

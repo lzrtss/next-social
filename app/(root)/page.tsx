@@ -30,7 +30,7 @@ export default async function Page({ searchParams }: PageProps) {
   return (
     <main className="h-full">
       <Container>
-        <h1 className="mt-2 mb-6 text-4xl">Posts</h1>
+        <h1 className="mt-2 mb-6 text-4xl">Recent posts</h1>
 
         <section className="flex flex-col gap-10">
           {posts.length > 0 ? (
@@ -41,7 +41,6 @@ export default async function Page({ searchParams }: PageProps) {
                   id={post._id}
                   author={post.author}
                   currentUserId={user?.id}
-                  community={post.community}
                   comments={post.children}
                   content={post.text}
                   createdAt={post.createdAt}

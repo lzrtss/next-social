@@ -28,7 +28,7 @@ export default function SearchBar({ routeType, className }: SearchBarProps) {
   }, [searchQuery, routeType]);
 
   return (
-    <div className={`px-4 py-2 flex bg-neutral-700 rounded-lg ${className}`}>
+    <div className={`px-4 py-2 flex bg-neutral-750 rounded-lg ${className}`}>
       <Image
         src={'/assets/search-grey.svg'}
         alt="Search"
@@ -42,7 +42,7 @@ export default function SearchBar({ routeType, className }: SearchBarProps) {
         id="text"
         value={searchQuery}
         placeholder="Type name or username"
-        className="border-none outline-none bg-neutral-700 text-neutral-100 text-md focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0"
+        className="border-none outline-none bg-neutral-750 text-neutral-100 text-md focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0"
         onChange={(e) => setSearchQuery(e.target.value.trim())}
       />
     </div>

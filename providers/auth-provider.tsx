@@ -23,7 +23,7 @@ export default function AuthProvider({
       }}
     >
       <ClerkLoading>
-        <p>Loading...</p>
+        <p className="h-screen flex justify-center items-center">Loading...</p>
       </ClerkLoading>
       <ClerkLoaded>{children}</ClerkLoaded>
     </ClerkProvider>

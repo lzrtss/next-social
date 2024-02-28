@@ -18,8 +18,8 @@ export default function PostCard({
 }: UserCardProps) {
   return (
     <Link href={`/profile/${id}`}>
-      <article className="p-4 flex justify-between gap-4 bg-neutral-700 rounded-lg hover:bg-[#474747]">
-        <div className="flex flex-1 items-center justify-start gap-3 xs:items-center">
+      <article className="p-4 flex justify-between gap-4 bg-neutral-750 rounded-lg hover:bg-neutral-700">
+        <div className="flex flex-1 items-center justify-start gap-3">
           <Image
             src={imageUrl}
             alt="Avatar"

@@ -1,43 +1,41 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
 
 import SocialActions from './social-actions';
-import CommentsPreview from './comments-preview';
-import { IAuthor, ICommunity, IPost } from '@/types/post.interface';
-import { deletePostById } from '@/actions';
 import { DeleteBtn } from '../client';
+import { getAllPostCommentsById } from '@/actions';
+import { formatDate } from '@/lib/utils';
+import { IAuthor } from '@/types/post.interface';
 
 interface PostCardProps {
   id: string;
   parentId: string | null;
   author: IAuthor;
   currentUserId: string | undefined;
-  community: ICommunity | null;
-  comments: IPost[];
   content: string;
   createdAt: string;
+  className?: string;
   isComment?: boolean;
-  isEdited?: boolean;
 }
 
-export default function PostCard({
+export default async function PostCard({
   id,
   parentId,
   author,
   currentUserId,
-  community,
-  comments,
   content,
   createdAt,
+  className = '',
   isComment,
-  isEdited = false,
 }: PostCardProps) {
+  const postComments = await getAllPostCommentsById(id);
+  const numberOfComments = postComments.length;
+
   return (
     <article
-      className={`w-full flex flex-col rounded-xl ${
-        isComment ? 'px-0 sm:px-6' : 'p-6 bg-neutral-700'
-      }`}
+      className={`p-6 flex flex-col rounded-xl bg-neutral-750 ${
+        isComment ? 'w-[95%]' : 'w-full'
+      } ${className}`}
     >
       <div className="flex justify-between items-start">
         <div className="w-full flex flex-row flex-1 gap-3">
@@ -52,35 +50,41 @@ export default function PostCard({
               />
             </Link>
 
-            <div className="relative mt-2 w-[1px] grow rounded-full bg-neutral-600" />
+            <div className="mt-2 w-[1px] grow rounded-full bg-neutral-600" />
           </div>
 
           <div className="w-full flex flex-col">
-            <Link href={`/profile/${author.id}`} className="w-fit">
-              <h2 className="cursor-pointer font-semibold italic text-neutral-400 hover:underline hover:underline-offset-2">
-                {author.name}
-              </h2>
-            </Link>
+            <div className="flex justify-between">
+              <Link href={`/profile/${author.id}`} className="w-fit">
+                <h2 className="cursor-pointer font-semibold italic text-neutral-400 hover:underline hover:underline-offset-2">
+                  {author.name}
+                </h2>
+              </Link>
 
-            <p className="mt-2 ">{content}</p>
+              {author.id === currentUserId ? (
+                <DeleteBtn
+                  postId={JSON.stringify(id)}
+                  parentId={parentId}
+                  isComment={isComment}
+                />
+              ) : null}
+            </div>
+
+            <p className="mt-2">{content}</p>
 
             <div className="mt-5 flex flex-col gap-3">
-              <SocialActions postId={id} />
-
-              {isComment && comments.length > 0 ? (
-                <CommentsPreview id={id} numberOfComments={comments.length} />
-              ) : null}
+              <div className="flex justify-between items-center">
+                <SocialActions
+                  postId={id}
+                  numberOfComments={numberOfComments}
+                />
+                <p className="max-md:hidden text-xs text-neutral-400 italic">
+                  {formatDate(createdAt)}
+                </p>
+              </div>
             </div>
           </div>
         </div>
-
-        {author.id === currentUserId ? (
-          <DeleteBtn
-            postId={JSON.stringify(id)}
-            parentId={parentId}
-            isComment={isComment}
-          />
-        ) : null}
       </div>
     </article>
   );

@@ -34,7 +34,7 @@ export default async function Onboarding() {
           <span className="font-medium">Posts</span>
         </p>
 
-        <section className="p-8 rounded-lg border border-neutral-700">
+        <section className="p-8 rounded-lg border border-neutral-750">
           <UserProfileForm user={userData} btnLabel="Save" />
         </section>
       </Container>

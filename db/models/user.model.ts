@@ -36,12 +36,6 @@ const userSchema = new mongoose.Schema({
       ref: 'Post',
     },
   ],
-  communities: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Community',
-    },
-  ],
   likes: [
     {
       type: mongoose.Schema.Types.ObjectId,
