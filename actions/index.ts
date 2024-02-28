@@ -1,6 +1,6 @@
 export {
   createPost,
-  createComment,
+  addComment,
   getAllPosts,
   getAllPostCommentsById,
   getPostById,

@@ -32,7 +32,7 @@ export const createPost = async ({ author, text, path }: CreatePostParams) => {
   }
 };
 
-export const createComment = async ({
+export const addComment = async ({
   text,
   path,
   postId,
