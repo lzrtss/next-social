@@ -33,54 +33,74 @@ export default async function PostCard({
 
   return (
     <article
-      className={`p-6 flex flex-col rounded-xl bg-neutral-750 ${
-        isComment ? 'w-[95%]' : 'w-full'
-      } ${className}`}
+      className={`flex justify-between items-center gap-2 ${
+        isComment ? 'w-[95%] ml-auto' : 'w-full'
+      }`}
     >
-      <div className="flex justify-between items-start">
-        <div className="w-full flex flex-row flex-1 gap-3">
-          <div className="flex flex-col items-center">
-            <Link href={`/profile/${author.id}`} className="relative h-12 w-12">
-              <Image
-                src={author.image}
-                fill
-                sizes="48px"
-                alt="Profile image"
-                className="cursor-pointer rounded-full"
-              />
-            </Link>
+      <Link
+        href={`/post/${parentId}`}
+        className={isComment ? 'block' : 'hidden'}
+      >
+        <Image
+          src="/assets/arrow-left-up.svg"
+          width={36}
+          height={36}
+          alt="Arrow down and right"
+        />
+      </Link>
 
-            <div className="mt-2 w-[1px] grow rounded-full bg-neutral-600" />
-          </div>
-
-          <div className="w-full flex flex-col">
-            <div className="flex justify-between">
-              <Link href={`/profile/${author.id}`} className="w-fit">
-                <h2 className="cursor-pointer font-semibold italic text-neutral-400 hover:underline hover:underline-offset-2">
-                  {author.name}
-                </h2>
+      <div
+        className={`w-full p-6 flex flex-col rounded-xl bg-neutral-750 ${className}`}
+      >
+        <div className="flex justify-between items-start">
+          <div className="w-full flex flex-row flex-1 gap-3">
+            <div className="flex flex-col items-center">
+              <Link
+                href={`/profile/${author.id}`}
+                className="relative h-12 w-12"
+              >
+                <Image
+                  src={author.image}
+                  fill
+                  sizes="48px"
+                  alt="Profile image"
+                  className="cursor-pointer rounded-full"
+                />
               </Link>
 
-              {author.id === currentUserId ? (
-                <DeleteBtn
-                  postId={JSON.stringify(id)}
-                  parentId={parentId}
-                  isComment={isComment}
-                />
-              ) : null}
+              <div className="mt-2 w-[1px] grow rounded-full bg-neutral-600" />
             </div>
 
-            <p className="mt-2">{content}</p>
+            <div className="w-full flex flex-col">
+              <div className="flex justify-between">
+                <Link href={`/profile/${author.id}`} className="w-fit">
+                  <h2 className="cursor-pointer font-semibold italic text-neutral-400 hover:underline hover:underline-offset-2">
+                    {author.name}
+                  </h2>
+                </Link>
 
-            <div className="mt-5 flex flex-col gap-3">
-              <div className="flex justify-between items-center">
-                <SocialActions
-                  postId={id}
-                  numberOfComments={numberOfComments}
-                />
-                <p className="max-md:hidden text-xs text-neutral-400 italic">
-                  {formatDate(createdAt)}
-                </p>
+                {author.id === currentUserId ? (
+                  <DeleteBtn
+                    postId={JSON.stringify(id)}
+                    parentId={parentId}
+                    isComment={isComment}
+                  />
+                ) : null}
+              </div>
+
+              <p className="mt-2">{content}</p>
+
+              <div className="mt-5 flex flex-col gap-3">
+                <div className="flex justify-between items-center">
+                  <SocialActions
+                    postId={id}
+                    numberOfComments={numberOfComments}
+                  />
+                  <p className="max-md:hidden text-xs text-neutral-400 italic">
+                    {isComment ? 'Commented on' : 'Posted on'}{' '}
+                    {formatDate(createdAt)}
+                  </p>
+                </div>
               </div>
             </div>
           </div>

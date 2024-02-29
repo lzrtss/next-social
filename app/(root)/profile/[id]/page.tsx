@@ -1,11 +1,12 @@
 import { redirect } from 'next/navigation';
-import { currentUser } from '@clerk/nextjs';
 import Image from 'next/image';
+import { currentUser } from '@clerk/nextjs';
 
-import { Container, PostsTab, ProfileInfo } from '@/components/server';
+import { Container, PostCard, ProfileInfo } from '@/components/server';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/client';
-import { getUserById, getAllUserComments, getAllUserPosts } from '@/actions';
+import { getUserById } from '@/actions';
 import { profileTabs } from '@/constants';
+import { IPost } from '@/types/post.interface';
 
 interface PageProps {
   params: {
@@ -21,11 +22,6 @@ export default async function Page({ params }: PageProps) {
   }
 
   const userInfo = await getUserById(params.id);
-  const { posts } = await getAllUserPosts(params.id);
-
-  const comments = await getAllUserComments(params.id);
-
-  const userData = { posts, comments, likes: userInfo.likes };
 
   if (!userInfo?.onboarded) {
     redirect('/onboarding');
@@ -45,13 +41,13 @@ export default async function Page({ params }: PageProps) {
 
         <div className="mt-6 h-[1px] w-full bg-neutral-750" />
 
-        <Tabs defaultValue="posts" className="w-full mt-8">
-          <TabsList className="mb-10 p-0 h-full flex flex-1 items-center rounded-lg overflow-hidden bg-neutral-750 text-neutral-100">
+        <Tabs defaultValue="posts" className="w-full mt-6">
+          <TabsList className="mb-6 p-0 h-full flex flex-1 items-center rounded-lg overflow-hidden bg-neutral-750 text-neutral-100">
             {profileTabs.map((tab) => (
               <TabsTrigger
                 key={tab.label}
                 value={tab.value}
-                className="flex gap-2 flex-1 data-[state=active]:bg-neutral-750 data-[state=active]:text-neutral-50 border-r last:border-0 border-neutral-700 cursor-auto"
+                className="flex gap-1 items-center flex-1 border-r last:border-0 border-neutral-700 cursor-auto data-[state=active]:bg-neutral-600 data-[state=active]:text-neutral-50"
               >
                 <Image
                   src={tab.icon}
@@ -61,10 +57,10 @@ export default async function Page({ params }: PageProps) {
                   className="object-contain"
                 />
 
-                <p className="text-neutral-400 max-sm:hidden">
-                  <span className="font-medium">{tab.label}</span>:{' '}
+                <p className="flex items-center gap-1 text-neutral-400 max-sm:hidden">
+                  <span className="font-medium">{tab.label}:</span>
                   <span className="font-semibold text-neutral-300">
-                    {userData?.[tab.value]?.length || 0}
+                    {userInfo[tab.value]?.length || 0}
                   </span>
                 </p>
               </TabsTrigger>
@@ -77,11 +73,24 @@ export default async function Page({ params }: PageProps) {
               value={tab.value}
               className="w-full text-neutral-100"
             >
-              <PostsTab
-                currentUserId={user.id}
-                accountId={userInfo.id}
-                accountType="User"
-              />
+              <section className="mt-6 flex flex-col gap-6">
+                {userInfo[tab.value].map((post: IPost) => (
+                  <PostCard
+                    key={post._id}
+                    id={post._id}
+                    isComment={tab.value === 'comments'}
+                    author={{
+                      id: userInfo.id,
+                      image: userInfo.image,
+                      name: userInfo.name,
+                    }}
+                    currentUserId={user.id}
+                    content={post.text}
+                    createdAt={post.createdAt}
+                    parentId={post.parentId}
+                  />
+                ))}
+              </section>
             </TabsContent>
           ))}
         </Tabs>

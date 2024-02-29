@@ -57,7 +57,7 @@ export default async function Page({ params }: PageProps) {
             ))}
           </div>
 
-          <div className="w-[95%] ml-auto mt-8">
+          <div className="mt-8">
             <CreateCommentForm
               btnLabel="Add comment"
               currentUserId={JSON.stringify(userInfo._id)}

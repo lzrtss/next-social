@@ -9,5 +9,4 @@ export { default as MainNavbar } from './layout/main-navbar';
 
 export { default as Container } from './shared/container';
 export { default as Logo } from './shared/logo';
-export { default as PostsTab } from './shared/posts-tab';
 export { default as ProfileInfo } from './shared/profile-info';

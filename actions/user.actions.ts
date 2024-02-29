@@ -46,7 +46,34 @@ export const getUserById = async (id: string) => {
   try {
     connectToDb();
 
-    return await User.findOne({ id });
+    return await User.findOne({ id })
+      .populate({
+        path: 'posts',
+        model: Post,
+        populate: {
+          path: 'author',
+          model: User,
+          select: 'id image name text',
+        },
+      })
+      .populate({
+        path: 'comments',
+        model: Post,
+        populate: {
+          path: 'author',
+          model: User,
+          select: 'id image name parentId text',
+        },
+      })
+      .populate({
+        path: 'likes',
+        model: Post,
+        populate: {
+          path: 'author',
+          model: User,
+          select: 'name image id text',
+        },
+      });
   } catch (error: any) {
     throw new Error(`User fetch failed: ${error.message}`);
   }
