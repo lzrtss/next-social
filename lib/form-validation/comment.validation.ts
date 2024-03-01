@@ -3,6 +3,6 @@ import * as z from 'zod';
 export const commentValidation = z.object({
   comment: z
     .string()
-    .min(3, { message: '3 chars min' })
+    .min(1, { message: '1 char min' })
     .max(280, { message: '280 chars max' }),
 });
