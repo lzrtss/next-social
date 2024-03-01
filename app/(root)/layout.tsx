@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
 import {
-  CommunitiesNavbar,
   Footer,
   Header,
   MainNavbar,
@@ -34,7 +33,6 @@ export default function RootLayout({
               <div className="flex-1 overflow-y-auto p-4 rounded-lg max-md:mb-20 bg-neutral-800">
                 {children}
               </div>
-              <CommunitiesNavbar />
             </div>
             <Footer />
           </div>

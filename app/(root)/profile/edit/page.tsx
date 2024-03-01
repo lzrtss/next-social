@@ -12,9 +12,9 @@ export default async function Page() {
   }
 
   const userInfo = await getUserById(user?.id);
-  if (userInfo?.onboarded) {
-    redirect('/');
-  }
+  // if (userInfo?.onboarded) {
+  //   redirect('/');
+  // }
 
   const userData = {
     id: user?.id,
@@ -28,11 +28,7 @@ export default async function Page() {
   return (
     <main>
       <Container className="max-w-2xl">
-        <h1 className="mt-2 mb-8 text-4xl">Onboarding</h1>
-        <p className="mb-8">
-          Fill out your profile to continue using{' '}
-          <span className="font-medium">Posts</span>
-        </p>
+        <h1 className="mt-2 mb-8 text-4xl">Edit profile</h1>
 
         <section className="p-8 rounded-lg border border-neutral-750">
           <UserProfileForm user={userData} btnLabel="Save" />

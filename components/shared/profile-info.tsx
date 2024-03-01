@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface ProfileInfoProps {
   accountId: string;
@@ -37,6 +38,14 @@ export default function ProfileInfo({
             <p className="italic text-neutral-400">@{username}</p>
           </div>
         </div>
+        {accountId === authUserId ? (
+          <Link
+            href="/profile/edit"
+            className="self-start px-4 py-1 rounded-md bg-neutral-600 hover:bg-neutral-500"
+          >
+            Edit profile
+          </Link>
+        ) : null}
       </div>
 
       <p className="mt-6 max-w-lg text-neutral-100">{bio}</p>
