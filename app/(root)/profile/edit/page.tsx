@@ -12,9 +12,9 @@ export default async function Page() {
   }
 
   const userInfo = await getUserById(user?.id);
-  // if (userInfo?.onboarded) {
-  //   redirect('/');
-  // }
+  if (!userInfo?.onboarded) {
+    redirect('/onboarding');
+  }
 
   const userData = {
     id: user?.id,

@@ -11,11 +11,13 @@ interface PostCardProps {
   id: string;
   parentId: string | null;
   author: IAuthor;
-  currentUserId: string | undefined;
+  currentUserId: string;
   content: string;
   createdAt: string;
   className?: string;
   isComment?: boolean;
+  isLiked: boolean;
+  isAuthor: boolean;
 }
 
 export default async function PostCard({
@@ -25,8 +27,10 @@ export default async function PostCard({
   currentUserId,
   content,
   createdAt,
-  className = '',
+  className,
   isComment,
+  isLiked,
+  isAuthor,
 }: PostCardProps) {
   const postComments = await getAllPostCommentsById(id);
   const numberOfComments = postComments.length;
@@ -79,7 +83,7 @@ export default async function PostCard({
                   </h2>
                 </Link>
 
-                {author.id === currentUserId ? (
+                {isAuthor ? (
                   <DeleteBtn
                     postId={JSON.stringify(id)}
                     parentId={parentId}
@@ -93,8 +97,10 @@ export default async function PostCard({
               <div className="mt-5 flex flex-col gap-3">
                 <div className="flex justify-between items-center">
                   <SocialActions
-                    postId={id}
+                    currentUserId={JSON.stringify(currentUserId)}
+                    postId={JSON.stringify(id)}
                     numberOfComments={numberOfComments}
+                    isLiked={isLiked}
                   />
                   <p className="max-md:hidden text-xs text-neutral-400 italic">
                     {isComment ? 'Commented on' : 'Posted on'}{' '}

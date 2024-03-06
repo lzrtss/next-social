@@ -129,49 +129,19 @@ export const getAllUsers = async ({
   }
 };
 
-export const getAllUserPosts = async (userId: string) => {
+export const getAllUserLikes = async (userId: string) => {
   try {
     connectToDb();
 
-    return await User.findOne({ id: userId }).populate({
-      path: 'posts',
-      model: Post,
-      populate: {
-        path: 'children',
-        model: Post,
-        populate: {
-          path: 'author',
-          model: User,
-          select: 'name image id',
-        },
-      },
-    });
-  } catch (error: any) {
-    throw new Error(`Failed to fetch User's posts: ${error.message}`);
-  }
-};
-
-export const getAllUserComments = async (userId: string) => {
-  try {
-    connectToDb();
-
-    const user = await User.findOne({ id: userId }).populate({
-      path: 'comments',
-      model: Post,
-      populate: {
-        path: 'author',
-        model: User,
-        select: 'name image id',
-      },
-    });
+    const user = await User.findOne({ id: userId });
 
     if (!user) {
       throw new Error('User not found');
     }
 
-    return user.comments;
+    return user.likes;
   } catch (error: any) {
-    throw new Error(`Failed to fetch User's comments: ${error.message}`);
+    throw new Error(`Failed to fetch User's likes: ${error.message}`);
   }
 };
 

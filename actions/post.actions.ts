@@ -32,7 +32,7 @@ export const createPost = async ({ author, text, path }: CreatePostParams) => {
   }
 };
 
-export const addComment = async ({
+export const addCommentToPost = async ({
   text,
   path,
   postId,
@@ -74,6 +74,60 @@ export const addComment = async ({
     throw new Error(`Failed to add comment to post: ${error.message}`);
   }
 };
+
+export async function addLikeToPost({
+  userId,
+  postId,
+  path,
+}: {
+  userId: string;
+  postId: string;
+  path: string;
+}) {
+  try {
+    connectToDb();
+
+    await User.updateOne(
+      { _id: userId, likes: { $ne: postId } },
+      { $push: { likes: postId } },
+    );
+
+    await Post.updateOne(
+      { _id: postId, likes: { $ne: userId } },
+      { $push: { likes: userId } },
+    );
+
+    revalidatePath(path);
+
+    return { success: true, userId, postId };
+  } catch (error: any) {
+    throw new Error(`Failed to add like to post: ${error.message}`);
+  }
+}
+
+export async function removeLikeFromPost({
+  userId,
+  postId,
+  path,
+}: {
+  userId: string;
+  postId: string;
+  path: string;
+}) {
+  try {
+    connectToDb();
+
+    await User.updateOne({ _id: userId }, { $pull: { likes: postId } });
+
+    await Post.updateOne({ _id: postId }, { $pull: { likes: userId } });
+
+    revalidatePath(path);
+
+    return { success: true, userId, postId };
+  } catch (error: any) {
+    throw new Error(`Failed to remove like from post: ${error.message}`);
+  }
+}
 
 export const getAllPosts = async (
   pageNumber: number = 1,
@@ -230,5 +284,3 @@ export const deleteCommentById = async (id: string, path: string) => {
     throw new Error(`Failed to delete comment: ${error.message}`);
   }
 };
-
-

@@ -29,7 +29,7 @@ export default async function Page() {
             <>
               {activity.map((activity) => (
                 <ActivityCard
-                  key={activity._id}
+                  key={activity.id}
                   createdAt={activity.createdAt}
                   imageUrl={activity.author.image}
                   name={activity.author.name}

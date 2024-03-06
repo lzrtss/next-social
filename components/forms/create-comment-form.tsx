@@ -17,7 +17,7 @@ import {
   Input,
 } from '@/components/client';
 import { commentValidation } from '@/lib/form-validation';
-import { addComment } from '@/actions';
+import { addCommentToPost } from '@/actions';
 
 interface CreateCommentFormProps {
   btnLabel: string;
@@ -44,7 +44,7 @@ export default function createCommentForm({
   });
 
   const onSubmit = async (values: z.infer<typeof commentValidation>) => {
-    await addComment({
+    await addCommentToPost({
       text: values.comment,
       path: pathname,
       postId,

@@ -1,6 +1,8 @@
 export {
   createPost,
-  addComment,
+  addCommentToPost,
+  addLikeToPost,
+  removeLikeFromPost,
   getAllPosts,
   getAllPostCommentsById,
   getPostById,
@@ -10,8 +12,7 @@ export {
 export {
   getUserById,
   getAllUsers,
-  getAllUserPosts,
-  getAllUserComments,
+  getAllUserLikes,
   getUserActivity,
   updateUser,
 } from './user.actions';

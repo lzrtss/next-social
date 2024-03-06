@@ -4,7 +4,7 @@ import { currentUser } from '@clerk/nextjs';
 
 import { Container, PostCard, ProfileInfo } from '@/components/server';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/client';
-import { getUserById } from '@/actions';
+import { getAllUserLikes, getUserById } from '@/actions';
 import { profileTabs } from '@/constants';
 import { IPost } from '@/types/post.interface';
 
@@ -26,6 +26,8 @@ export default async function Page({ params }: PageProps) {
   if (!userInfo?.onboarded) {
     redirect('/onboarding');
   }
+
+  const likedPosts = await getAllUserLikes(user.id);
 
   return (
     <main className="h-full">
@@ -79,12 +81,14 @@ export default async function Page({ params }: PageProps) {
                     key={post._id}
                     id={post._id}
                     isComment={tab.value === 'comments'}
+                    isLiked={likedPosts.includes(post._id.toString())}
+                    isAuthor={post.author.id === user.id}
                     author={{
-                      id: userInfo.id,
-                      image: userInfo.image,
-                      name: userInfo.name,
+                      id: post.author.id,
+                      image: post.author.image,
+                      name: post.author.name,
                     }}
-                    currentUserId={user.id}
+                    currentUserId={userInfo._id}
                     content={post.text}
                     createdAt={post.createdAt}
                     parentId={post.parentId}

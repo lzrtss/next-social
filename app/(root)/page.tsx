@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation';
 
 import { Pagination } from '@/components/client';
 import { Container, PostCard } from '@/components/server';
-import { getAllPosts, getUserById } from '@/actions';
+import { getAllPosts, getAllUserLikes, getUserById } from '@/actions';
 
 interface PageProps {
   searchParams: { [key: string]: string | undefined };
@@ -27,6 +27,8 @@ export default async function Page({ searchParams }: PageProps) {
     20,
   );
 
+  const likedPosts = await getAllUserLikes(user.id);
+
   return (
     <main className="h-full">
       <Container>
@@ -39,8 +41,10 @@ export default async function Page({ searchParams }: PageProps) {
                 <PostCard
                   key={post._id}
                   id={post._id}
+                  isLiked={likedPosts.includes(post._id.toString())}
+                  isAuthor={post.author.id === user.id}
                   author={post.author}
-                  currentUserId={user?.id}
+                  currentUserId={userInfo._id}
                   content={post.text}
                   createdAt={post.createdAt}
                   parentId={post.parentId}

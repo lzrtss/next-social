@@ -5,6 +5,7 @@ import { Container, PostCard } from '@/components/server';
 import { CreateCommentForm } from '@/components/client';
 import { getPostById, getUserById } from '@/actions';
 import { IPost } from '@/types/post.interface';
+import { getAllUserLikes } from '@/actions';
 
 interface PageProps {
   params: {
@@ -26,6 +27,7 @@ export default async function Page({ params }: PageProps) {
   }
 
   const post = await getPostById(params.id);
+  const likedPosts = await getAllUserLikes(user.id);
 
   return (
     <main className="h-full">
@@ -34,8 +36,10 @@ export default async function Page({ params }: PageProps) {
           <div className="mb-8">
             <PostCard
               id={post._id}
+              isLiked={likedPosts.includes(post._id)}
+              isAuthor={post.author.id === user.id}
               author={post.author}
-              currentUserId={user?.id}
+              currentUserId={userInfo._id}
               content={post.text}
               createdAt={post.createdAt}
               parentId={post.parentId}
@@ -47,8 +51,10 @@ export default async function Page({ params }: PageProps) {
               <PostCard
                 key={comment._id}
                 id={comment._id}
+                isLiked={likedPosts.includes(comment._id)}
+                isAuthor={comment.author.id === user.id}
                 author={comment.author}
-                currentUserId={user?.id}
+                currentUserId={userInfo._id}
                 content={comment.text}
                 createdAt={comment.createdAt}
                 parentId={comment.parentId}

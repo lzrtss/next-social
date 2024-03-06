@@ -7,7 +7,7 @@ interface ActivityCardProps {
   createdAt: string;
   imageUrl: string;
   name: string;
-  parentId: string;
+  parentId?: string;
   userId: string;
   username: string;
 }
