@@ -27,27 +27,23 @@ export default function SocialActions({
   const [liked, setLiked] = useState(isLiked);
 
   const handleAddLikeToPost = async () => {
-    const { success } = await addLikeToPost({
+    setLiked(true);
+
+    await addLikeToPost({
       postId: JSON.parse(postId),
       userId: JSON.parse(currentUserId),
       path: pathname,
     });
-
-    if (success) {
-      setLiked(true);
-    }
   };
 
   const handleRemoveLikeFromPost = async () => {
-    const { success } = await removeLikeFromPost({
+    setLiked(false);
+
+    await removeLikeFromPost({
       postId: JSON.parse(postId),
       userId: JSON.parse(currentUserId),
       path: pathname,
     });
-
-    if (success) {
-      setLiked(false);
-    }
   };
 
   return (
