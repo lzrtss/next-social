@@ -6,17 +6,17 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Teck Stack
 
-Next.js - Framework;
-Typescript - Language;
-Tailwind - CSS;
-shadcn/ui - UI Components;
-Clerk – Authentication;
-MongoDB - Database;
-Mongoose - ODM (Object Data Modeling);
-Uploadthing - File uploads;
-React Hook Form - Forms management;
-Zod - Forms validation;
-Vercel – Hosting
+- Next.js - Framework;
+- Typescript - Language;
+- Tailwind - CSS;
+- shadcn/ui - UI Components;
+- Clerk – Authentication;
+- MongoDB - Database;
+- Mongoose - ODM (Object Data Modeling);
+- Uploadthing - File uploads;
+- React Hook Form - Forms management;
+- Zod - Forms validation;
+- Vercel – Hosting
 
 ## Getting Started
 
