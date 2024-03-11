@@ -1,4 +1,22 @@
+# Posts
+
+Posts is an open-source social networking platform designed to provide users with a streamlined and interactive experience similar to Twitter or Threads. With Posts, users can effortlessly share their thoughts, opinions, and updates in real-time. Whether it's expressing ideas, engaging in discussions, or staying updated with the latest trends, Posts offers a vibrant space for users to connect and interact.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+## Teck Stack
+
+Next.js - Framework;
+Typescript - Language;
+Tailwind - CSS;
+shadcn/ui - UI Components;
+Clerk – Authentication;
+MongoDB - Database;
+Mongoose - ODM (Object Data Modeling);
+Uploadthing - File uploads;
+React Hook Form - Forms management;
+Zod - Forms validation;
+Vercel – Hosting
 
 ## Getting Started
 
